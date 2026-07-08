@@ -1,635 +1,1226 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Tech Frog Consulting — AI-Powered Business Automation</title>
-<meta name="description" content="Tech Frog Consulting builds AI-powered automation systems that eliminate operational drag, reduce manual labor, and scale your output without scaling your headcount."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@500;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech Frog Consulting — Operational Infrastructure for Small Firms · Austin, TX</title>
+<meta name="description" content="Tech Frog Consulting builds the operational systems small firms run on — applied AI with review gates, automation, security baselines, and custom software. Austin, Texas. New engagements open Q4 2026.">
+<link rel="canonical" href="https://techfrogconsulting.com/">
+<meta name="theme-color" content="#0a0c0b">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tech Frog Consulting">
+<meta property="og:title" content="Tech Frog Consulting — Operational Infrastructure for Small Firms">
+<meta property="og:description" content="Applied AI with review gates. Automation that survives staff turnover. Security sized to a ten-person firm. Custom software you own outright. Austin, TX.">
+<meta property="og:url" content="https://techfrogconsulting.com/">
+<meta name="twitter:card" content="summary">
+
+<!-- Favicon: the waterline mark -->
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+
+<!-- Structured data: the firm, and the founder link that binds the two sites -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Tech Frog Consulting",
+  "legalName": "Tech Frog Consulting LLC",
+  "url": "https://techfrogconsulting.com",
+  "email": "support@techfrogconsulting.com",
+  "description": "Systems consultancy in Austin, Texas. Workflow engineering, applied AI with verification gates, automation, security baselines, and custom software for small firms.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3801 N Capital of Texas Hwy, Ste E240-3602",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78746",
+    "addressCountry": "US"
+  },
+  "areaServed": ["Austin, TX", "Central Texas"],
+  "founder": {
+    "@type": "Person",
+    "name": "Grayson Griffin",
+    "url": "https://graysongriffin.me",
+    "sameAs": ["https://graysongriffin.me"]
+  },
+  "knowsAbout": ["workflow engineering", "applied AI", "automation", "cybersecurity", "custom software", "open-source research"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "When can engagements begin?", "acceptedAnswer": {"@type": "Answer", "text": "New client engagements open Q4 2026. Consultations and workflow-audit scheduling are being booked now for that window."}},
+    {"@type": "Question", "name": "Will our data train AI models?", "acceptedAnswer": {"@type": "Answer", "text": "No. Cloud AI runs through zero-retention API configurations; Sidebar runs entirely on hardware in your office. Training on client data is contractually off the table."}},
+    {"@type": "Question", "name": "Do you resell software or hardware?", "acceptedAnswer": {"@type": "Answer", "text": "No margins on other people's products. Tech Frog specifies, builds, and configures. The client holds the licenses, the credentials, and the code."}},
+    {"@type": "Question", "name": "What does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Workflow audits are fixed-fee. Builds are fixed-scope. Ongoing care plans start at $1,200 per month. No hourly billing."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#080d1a;color:#e8eaf0;font-family:'Instrument Sans',sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* ================================================================
+   TECH FROG CONSULTING — techfrogconsulting.com
+   Single file. No frameworks. No trackers.
+   Brand system shared with graysongriffin.me:
+   onyx / phosphor / paper · Cormorant Garamond / Geist / Geist Mono
+   ================================================================ */
+
 :root{
-  --navy:#080d1a;--navy-2:#0e1628;--navy-3:#14203a;--navy-4:#1c2d4f;
-  --slate:#6b7d9a;--mist:#8a9ab8;--cloud:#c8d0e0;--white:#e8eaf0;
-  --acid:#b8f045;--acid-dk:#93c436;
-  --display:'Cabinet Grotesk',sans-serif;
-  --mono:'IBM Plex Mono',monospace;
-  --body:'Instrument Sans',sans-serif;
+  --bg:      #0a0c0b;
+  --bg-2:    #0e1110;
+  --bg-3:    #121614;
+  --line:    rgba(242,239,233,.08);
+  --line-2:  rgba(242,239,233,.16);
+  --paper:   #f2efe9;
+  --ink:     #ddd9d0;
+  --muted:   #9aa39d;
+  --dim:     #6b746e;
+  --ph:      #35e28b;
+  --ph-soft: rgba(53,226,139,.32);
+  --ph-glow: rgba(53,226,139,.10);
+  --serif:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:    'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:    'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --max:     1160px;
+  --r:       12px;
+  --ease:    cubic-bezier(.22,.61,.2,1);
 }
-.tag{font-family:var(--mono);font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--acid);display:inline-block}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(8,13,26,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--navy-4)}
-.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-.nav-brand-text{font-family:var(--display);font-size:1rem;font-weight:800;color:var(--white);letter-spacing:-.01em}
-.nav-brand-text span{color:var(--acid)}
-.nav-items{display:flex;align-items:center;gap:2rem;list-style:none}
-.nav-items a{font-size:.8rem;color:var(--mist);text-decoration:none;letter-spacing:.04em;transition:color .2s}
-.nav-items a:hover{color:var(--white)}
-.nav-btn{font-family:var(--mono);font-size:.65rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:.55rem 1.3rem;background:var(--acid);color:var(--navy);border:none;cursor:pointer;text-decoration:none;display:inline-block;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .2s,transform .15s}
-.nav-btn:hover{background:var(--acid-dk);transform:translateY(-1px)}
-.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
-.hamburger span{display:block;width:20px;height:1.5px;background:var(--white);transition:all .25s}
-@media(max-width:768px){
-  .nav{padding:1rem 1.25rem}
-  .nav-items,.nav-btn.dsk{display:none}
-  .hamburger{display:flex}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+html:focus-within{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16.5px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  background-image:
+    radial-gradient(1100px 520px at 78% -8%, var(--ph-glow), transparent 62%),
+    linear-gradient(rgba(242,239,233,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,239,233,.022) 1px, transparent 1px);
+  background-size:auto, 56px 56px, 56px 56px;
+  background-attachment:fixed;
 }
-.mob-menu{position:fixed;top:57px;left:0;right:0;z-index:199;background:var(--navy-2);border-bottom:1px solid var(--navy-4);padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:1rem;transform:translateY(-110%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
-.mob-menu.open{transform:translateY(0)}
-.mob-menu a{font-size:.95rem;color:var(--mist);text-decoration:none;padding:.4rem 0;border-bottom:1px solid var(--navy-4)}
-.mob-menu .nav-btn{text-align:center;margin-top:.5rem;clip-path:none}
+::selection{ background:var(--ph); color:var(--bg); }
 
-/* HERO */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 2.5rem;gap:4rem;position:relative;border-bottom:1px solid var(--navy-4);overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(184,240,69,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(26,80,255,.04) 0%,transparent 60%)}
-.hero-dots{position:absolute;inset:0;z-index:0;background-image:radial-gradient(circle,var(--navy-4) 1px,transparent 1px);background-size:32px 32px;opacity:.6;-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
-.hero-left{position:relative;z-index:1;padding:8rem 0 5rem}
-.hero-kicker{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
-.hero-kicker::before{content:'';display:block;width:24px;height:1.5px;background:var(--acid);flex-shrink:0}
-.hero h1{font-family:var(--display);font-size:clamp(2.5rem,4.5vw,4.2rem);font-weight:900;line-height:1.04;letter-spacing:-.03em;color:var(--white);margin-bottom:1.5rem}
-.hero h1 .accent{color:var(--acid)}
-.hero-sub{font-size:clamp(.95rem,1.4vw,1.05rem);color:var(--mist);max-width:480px;line-height:1.8;margin-bottom:2.5rem}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
-.btn-primary{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:.85rem 1.75rem;background:var(--acid);color:var(--navy);border:none;cursor:pointer;text-decoration:none;display:inline-block;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .2s,transform .15s}
-.btn-primary:hover{background:var(--acid-dk);transform:translateY(-1px)}
-.btn-ghost{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:.85rem 1.75rem;background:transparent;color:var(--mist);border:1px solid var(--slate);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
-.btn-ghost:hover{border-color:var(--mist);color:var(--white)}
-.hero-micro{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--slate);margin-top:.9rem}
-.hero-right{position:relative;z-index:1;padding:8rem 0 5rem}
-.hero-terminal{background:var(--navy-2);border:1px solid var(--navy-4);overflow:hidden}
-.terminal-bar{background:var(--navy-3);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--navy-4)}
-.terminal-dot{width:10px;height:10px;border-radius:50%}
-.terminal-body{padding:1.5rem;font-family:var(--mono);font-size:.75rem;line-height:2}
-.t-line{display:flex;gap:.75rem}
-.t-prompt{color:var(--acid)}
-.t-cmd{color:var(--cloud)}
-.t-out{color:var(--mist);padding-left:1.25rem}
-.t-out.good{color:#4ade80}
-.t-out.warn{color:#facc15}
-.t-cursor{display:inline-block;width:8px;height:1em;background:var(--acid);animation:blink 1.1s step-end infinite;vertical-align:text-bottom}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-@media(max-width:900px){.hero{grid-template-columns:1fr;gap:0;padding:0 1.25rem}.hero-left{padding:7rem 0 2rem}.hero-right{padding:0 0 4rem}}
+img{ max-width:100%; height:auto; display:block; }
+a{ color:var(--paper); text-decoration:none; }
+p{ margin:0 0 1em; }
+h1,h2,h3{ font-family:var(--serif); font-weight:500; color:var(--paper); margin:0; }
+h1{ font-size:clamp(2.7rem, 6.2vw, 4.7rem); line-height:1.04; letter-spacing:-.01em; }
+h2{ font-size:clamp(1.9rem, 4vw, 2.9rem); line-height:1.12; letter-spacing:-.005em; }
+h3{ font-size:clamp(1.4rem, 2.4vw, 1.85rem); line-height:1.2; }
 
-/* TICKER */
-.ticker{background:var(--navy-3);border-top:1px solid var(--navy-4);border-bottom:1px solid var(--navy-4);padding:.7rem 0;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-flex;gap:3rem;animation:ticker 25s linear infinite}
-.ticker-inner:hover{animation-play-state:paused}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-item{font-family:var(--mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--slate);display:inline-flex;align-items:center;gap:.75rem}
-.ticker-item::after{content:'·';color:var(--acid);font-size:1rem}
+.wrap{ max-width:var(--max); margin-inline:auto; padding-inline:clamp(20px, 4.5vw, 34px); }
+section{ padding:clamp(88px, 11vw, 148px) 0; }
+section + section{ border-top:1px solid var(--line); }
+@supports (content-visibility:auto){
+  .cv{ content-visibility:auto; contain-intrinsic-size: 1px 900px; }
+}
 
-/* SECTIONS */
-section{padding:6rem 2.5rem}
-@media(max-width:768px){section{padding:4rem 1.25rem}}
-.sec-inner{max-width:1100px;margin:0 auto}
-.sec-head{margin-bottom:3.5rem}
-.sec-head h2{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;color:var(--white);line-height:1.12;letter-spacing:-.025em;margin-top:.6rem}
+/* Mono kicker labels — the schematic voice */
+.klabel{
+  font-family:var(--mono); font-size:.68rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--dim);
+  display:flex; align-items:center; gap:.7em; margin:0 0 1.6rem;
+}
+.klabel::after{ content:""; height:1px; flex:0 0 44px; background:var(--line-2); }
+.klabel b{ color:var(--ph); font-weight:500; }
 
-/* STATS */
-.stats-sec{background:var(--navy-2);border-bottom:1px solid var(--navy-4);padding:3.5rem 2.5rem}
-.stats-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--navy-4)}
-.stat-card{background:var(--navy-2);padding:2rem 1.5rem;text-align:center}
-.stat-n{font-family:var(--display);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;color:var(--acid);line-height:1;display:block;letter-spacing:-.02em}
-.stat-l{font-size:.78rem;color:var(--mist);margin-top:.4rem}
-@media(max-width:700px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stats-sec{padding:2.5rem 1.25rem}}
+.lede{ font-size:clamp(1.05rem, 1.6vw, 1.22rem); color:var(--muted); max-width:60ch; }
+.lede strong, .lede b{ color:var(--paper); font-weight:500; }
 
-/* PROBLEM */
-.problem-sec{background:var(--navy);border-bottom:1px solid var(--navy-4)}
-.problem-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
-.problem-body p{font-size:clamp(.95rem,1.3vw,1.05rem);color:var(--mist);line-height:1.82;margin-bottom:1.2rem}
-.problem-body p strong{color:var(--white);font-weight:500}
-.symptom-list{display:flex;flex-direction:column;gap:1px;background:var(--navy-4)}
-.symptom{background:var(--navy-2);padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:background .2s}
-.symptom:hover{background:var(--navy-3)}
-.symptom-num{font-family:var(--mono);font-size:.6rem;color:var(--acid);letter-spacing:.1em;flex-shrink:0;margin-top:.2rem}
-.symptom-text{font-size:.88rem;color:var(--cloud);line-height:1.6}
-@media(max-width:768px){.problem-layout{grid-template-columns:1fr;gap:2.5rem}}
+.mono{ font-family:var(--mono); }
+.ph{ color:var(--ph); }
 
-/* SOLUTION */
-.solution-sec{background:var(--navy-2);border-bottom:1px solid var(--navy-4)}
-.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--navy-4);margin-top:3rem}
-.phase{background:var(--navy-2);padding:2.5rem 2rem;position:relative;overflow:hidden}
-.phase::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--navy-4);transition:background .3s}
-.phase:hover::before{background:var(--acid)}
-.phase-n{font-family:var(--display);font-size:5rem;font-weight:900;color:var(--navy-4);line-height:1;margin-bottom:1rem;letter-spacing:-.04em;transition:color .3s}
-.phase:hover .phase-n{color:var(--navy-3)}
-.phase h3{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:.7rem;letter-spacing:-.01em}
-.phase p{font-size:.86rem;color:var(--mist);line-height:1.7}
-.phase-note{font-family:var(--mono);font-size:.62rem;color:var(--slate);margin-top:1.25rem;letter-spacing:.05em;font-style:italic}
-.phase-tag{display:inline-block;margin-bottom:.75rem}
-@media(max-width:768px){.phases{grid-template-columns:1fr}}
+/* Links with drawn underline */
+.ulink{ position:relative; color:var(--paper); }
+.ulink::after{
+  content:""; position:absolute; left:0; bottom:-3px; height:1px; width:100%;
+  background:var(--ph); transform:scaleX(0); transform-origin:left;
+  transition:transform .35s var(--ease);
+}
+.ulink:hover::after, .ulink:focus-visible::after{ transform:scaleX(1); }
 
-/* DIFF */
-.diff-sec{background:var(--navy);border-bottom:1px solid var(--navy-4)}
-.diff-split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-.diff-headline{font-family:var(--display);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;color:var(--white);line-height:1.18;letter-spacing:-.025em;margin-bottom:1.5rem}
-.diff-headline span{color:var(--acid)}
-.diff-body{font-size:.93rem;color:var(--mist);line-height:1.8;margin-bottom:1.5rem}
-.vs-table{width:100%;border-collapse:collapse;margin-top:2rem}
-.vs-table th{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);padding:.6rem 1rem;text-align:left;border-bottom:1px solid var(--navy-4)}
-.vs-table td{font-size:.83rem;padding:.7rem 1rem;border-bottom:1px solid var(--navy-4);color:var(--mist)}
-.vs-table td:first-child{color:var(--cloud);font-weight:500}
-.vs-table td.bad{color:var(--slate)}
-.vs-table td.good{color:#4ade80}
-.diff-cards{display:flex;flex-direction:column;gap:1px;background:var(--navy-4)}
-.diff-card{background:var(--navy-2);padding:1.5rem 1.75rem;border-left:3px solid var(--navy-4);transition:border-color .25s,background .25s}
-.diff-card:hover{border-left-color:var(--acid);background:var(--navy-3)}
-.diff-card h4{font-family:var(--display);font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:.4rem;letter-spacing:-.01em}
-.diff-card p{font-size:.83rem;color:var(--mist);line-height:1.65}
-@media(max-width:900px){.diff-split{grid-template-columns:1fr;gap:2.5rem}}
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:.55em;
+  font-family:var(--mono); font-size:.78rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:.95em 1.6em; border-radius:8px; cursor:pointer;
+  border:1px solid transparent;
+  transition:transform .25s var(--ease), background .25s, border-color .25s, box-shadow .25s;
+}
+.btn-primary{ background:var(--paper); color:var(--bg); }
+.btn-primary:hover, .btn-primary:focus-visible{ transform:translateY(-1px); box-shadow:0 6px 24px rgba(0,0,0,.45); }
+.btn-ghost{ border-color:var(--line-2); color:var(--paper); background:transparent; }
+.btn-ghost:hover, .btn-ghost:focus-visible{ border-color:var(--ph-soft); box-shadow:0 0 0 1px var(--ph-glow), 0 0 24px var(--ph-glow); }
 
-/* OFFER */
-.offer-sec{background:var(--navy-2);border-bottom:1px solid var(--navy-4)}
-.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--navy-4);margin-top:3rem}
-.offer-card{background:var(--navy-2);padding:2.75rem 2.25rem;display:flex;flex-direction:column}
-.offer-card.featured{background:var(--navy-3)}
-.offer-eyebrow{margin-bottom:1rem}
-.offer-title{font-family:var(--display);font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:.3rem;letter-spacing:-.015em}
-.offer-price{font-family:var(--display);font-size:2.8rem;font-weight:900;color:var(--white);line-height:1;margin:.75rem 0;letter-spacing:-.03em}
-.offer-price sub{font-size:1rem;font-weight:400;color:var(--mist);vertical-align:baseline}
-.offer-desc{font-size:.88rem;color:var(--mist);line-height:1.7;margin-bottom:1.5rem}
-.offer-list{list-style:none;margin-bottom:2rem;flex:1}
-.offer-list li{font-size:.83rem;color:var(--mist);padding:.45rem 0 .45rem 1.25rem;position:relative;border-bottom:1px solid var(--navy-4)}
-.offer-list li::before{content:'→';position:absolute;left:0;color:var(--acid);font-size:.7rem;top:.55rem}
-.offer-note{font-family:var(--mono);font-size:.63rem;color:var(--slate);letter-spacing:.06em;line-height:1.6;margin-top:1.5rem}
-@media(max-width:700px){.offer-grid{grid-template-columns:1fr}}
+/* Focus + skip link */
+:focus-visible{ outline:2px solid var(--ph); outline-offset:3px; border-radius:4px; }
+.skip{
+  position:absolute; left:-999px; top:0; z-index:200;
+  background:var(--ph); color:var(--bg); font-family:var(--mono); font-size:.8rem;
+  padding:.8em 1.2em; border-radius:0 0 8px 0;
+}
+.skip:focus{ left:0; }
 
-/* TRUST */
-.trust-sec{background:var(--navy);border-bottom:1px solid var(--navy-4)}
-.case-wrap{margin-top:3rem;border:1px solid var(--navy-4);position:relative}
-.case-label{position:absolute;top:0;left:2rem;background:var(--navy);padding:0 .75rem;font-family:var(--mono);font-size:.6rem;color:var(--acid);letter-spacing:.2em;text-transform:uppercase;transform:translateY(-50%)}
-.case-inner{padding:2.5rem}
-.case-meta{display:flex;gap:2rem;flex-wrap:wrap;padding-bottom:1.5rem;border-bottom:1px solid var(--navy-4);margin-bottom:1.75rem}
-.case-meta-item span{display:block;font-family:var(--mono);font-size:.6rem;color:var(--slate);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
-.case-meta-item strong{font-size:.85rem;color:var(--cloud);font-weight:400}
-.case-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1.75rem}
-.case-col h5{font-family:var(--mono);font-size:.6rem;color:var(--acid);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
-.case-col p{font-size:.86rem;color:var(--mist);line-height:1.7}
-.case-outcome{padding:1.5rem;background:rgba(184,240,69,.07);border-left:3px solid var(--acid)}
-.case-outcome strong{display:block;font-family:var(--display);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.4rem;letter-spacing:-.01em}
-.case-outcome p{font-size:.86rem;color:var(--mist)}
-.placeholder-block{margin-top:1.5rem;border:1px dashed var(--slate);padding:1.5rem 2rem;font-family:var(--mono);font-size:.7rem;color:var(--slate);letter-spacing:.05em;line-height:1.8}
-@media(max-width:640px){.case-cols{grid-template-columns:1fr}.case-inner{padding:1.5rem}}
+/* ------------------------------------------------ NAV */
+.nav{
+  position:fixed; inset:0 0 auto 0; z-index:100; height:64px;
+  display:flex; align-items:center;
+  border-bottom:1px solid transparent;
+  transition:background .35s, border-color .35s, backdrop-filter .35s;
+}
+.nav.scrolled{
+  background:rgba(10,12,11,.78);
+  backdrop-filter:blur(14px) saturate(1.1);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);
+  border-color:var(--line);
+}
+.nav-inner{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand{ display:flex; align-items:center; gap:.7em; color:var(--paper); }
+.brand .mark{ width:34px; aspect-ratio:184/176; flex:none; display:block; background:url("data:image/png;base64,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") center / contain no-repeat; }
+.brand span{ font-family:var(--mono); font-size:.78rem; font-weight:500; letter-spacing:.22em; }
+.nav-links{ display:flex; align-items:center; gap:clamp(.9rem, 2vw, 1.6rem); list-style:none; margin:0; padding:0; }
+.nav-links a{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); transition:color .25s;
+}
+.nav-links a:hover, .nav-links a:focus-visible, .nav-links a.active{ color:var(--paper); }
+.nav-cta{ font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  border:1px solid var(--line-2); border-radius:7px; padding:.6em 1em; color:var(--paper);
+  transition:border-color .25s, box-shadow .25s; white-space:nowrap; }
+.nav-cta:hover, .nav-cta:focus-visible{ border-color:var(--ph-soft); box-shadow:0 0 18px var(--ph-glow); }
+.menu-btn{ display:none; background:none; border:1px solid var(--line-2); border-radius:7px;
+  width:40px; height:36px; cursor:pointer; position:relative; }
+.menu-btn span{ position:absolute; left:10px; right:10px; height:1.5px; background:var(--paper);
+  transition:transform .3s var(--ease), opacity .2s; }
+.menu-btn span:nth-child(1){ top:13px; } .menu-btn span:nth-child(2){ top:21px; }
+.menu-btn[aria-expanded="true"] span:nth-child(1){ transform:translateY(4px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2){ transform:translateY(-4px) rotate(-45deg); }
 
-/* WHO */
-.who-sec{background:var(--navy-3);border-bottom:1px solid var(--navy-4)}
-.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--navy-4);margin-top:2.5rem}
-.who-card{background:var(--navy-3);padding:2rem}
-.who-card h4{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.75rem;letter-spacing:-.01em}
-.who-card ul{list-style:none}
-.who-card ul li{font-size:.84rem;color:var(--mist);padding:.35rem 0 .35rem 1.1rem;position:relative;border-bottom:1px solid var(--navy-4)}
-.who-card ul li::before{content:'·';position:absolute;left:0;color:var(--acid);font-weight:700}
-.who-card.exclude h4{color:var(--mist)}
-.who-card.exclude ul li::before{color:var(--slate)}
-@media(max-width:640px){.who-grid{grid-template-columns:1fr}}
+/* ------------------------------------------------ HERO */
+.hero{ padding:calc(64px + clamp(72px, 10vw, 128px)) 0 clamp(84px, 10vw, 128px); }
+.hero-grid{ display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(2.5rem, 5vw, 4.5rem); align-items:center; }
+.hero h1{ margin:0 0 1.1rem; }
+.hero h1 em{ font-style:italic; color:var(--paper); }
+.hero .lede{ margin-bottom:2.2rem; }
+.hero-ctas{ display:flex; flex-wrap:wrap; gap:.9rem; margin-bottom:2rem; }
+.hero-note{ font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); display:flex; align-items:center; gap:.7em; }
+.dot{ width:7px; height:7px; border-radius:50%; background:var(--ph); box-shadow:0 0 10px var(--ph-soft); animation:pulse 2.6s ease-in-out infinite; }
+@keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
 
-/* CTA */
-.cta-sec{background:var(--navy-2);border-bottom:1px solid var(--navy-4);text-align:center}
-.cta-sec h2{font-family:var(--display);font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:var(--white);line-height:1.1;letter-spacing:-.03em;max-width:680px;margin:.75rem auto 1.5rem}
-.cta-sec h2 span{color:var(--acid)}
-.cta-sec>.sec-inner>p{font-size:1rem;color:var(--mist);max-width:500px;margin:0 auto 2.5rem;line-height:1.78}
-.cta-points{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-top:1.75rem}
-.cta-points span{font-family:var(--mono);font-size:.65rem;color:var(--slate);letter-spacing:.1em}
-.cta-points span::before{content:'✓ ';color:var(--acid)}
-.email-capture{max-width:580px;margin:3rem auto 0;border:1px solid var(--navy-4);padding:2rem;text-align:left}
-.email-capture p{font-size:.88rem;color:var(--mist);margin-bottom:1rem;text-align:left;max-width:none}
-.email-capture p strong{color:var(--white)}
-.email-row{display:flex}
-.email-row input{flex:1;padding:.75rem 1rem;background:var(--navy);border:1px solid var(--slate);border-right:none;color:var(--white);font-family:var(--body);font-size:.85rem;outline:none}
-.email-row input::placeholder{color:var(--slate)}
-.email-row input:focus{border-color:var(--acid)}
-.email-row button{font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.25rem;background:var(--acid);color:var(--navy);border:none;cursor:pointer;transition:background .2s;white-space:nowrap}
-.email-row button:hover{background:var(--acid-dk)}
-.email-thanks{font-family:var(--mono);font-size:.7rem;color:#4ade80;letter-spacing:.1em;padding:.75rem 0}
+/* Terminal panel */
+.term{
+  background:#0b0e0d; border:1px solid var(--line); border-radius:var(--r);
+  box-shadow:0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(242,239,233,.04);
+  overflow:hidden;
+}
+.term-bar{ display:flex; align-items:center; gap:.5em; padding:.7em 1em; border-bottom:1px solid var(--line); }
+.term-bar i{ width:9px; height:9px; border-radius:50%; background:var(--line-2); }
+.term-bar em{ margin-left:auto; font-style:normal; font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
+.term-body{
+  margin:0; padding:1.3em 1.25em 1.5em; font-family:var(--mono); font-size:.82rem; line-height:1.9;
+  color:var(--muted); white-space:pre; overflow-x:auto; tab-size:2;
+}
+.term-body .cmd{ color:var(--paper); }
+.term-body .val{ color:var(--ph); }
+.term-body .ok{ color:var(--ph); }
+.caret{ display:inline-block; width:.55em; height:1.05em; background:var(--ph); vertical-align:-2px; animation:blink 1.1s steps(1) infinite; }
+@keyframes blink{ 50%{ opacity:0; } }
 
-/* FOOTER */
-footer{padding:3rem 2.5rem;border-top:1px solid var(--navy-4);display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap}
-.footer-brand{font-family:var(--display);font-size:1rem;font-weight:800;color:var(--white);letter-spacing:-.01em}
-.footer-brand span{color:var(--acid)}
-.footer-sub{font-size:.76rem;color:var(--slate);margin-top:.4rem;max-width:260px;line-height:1.6}
-.footer-links{display:flex;gap:2rem;flex-wrap:wrap;list-style:none}
-.footer-links a{font-size:.78rem;color:var(--slate);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--mist)}
-.footer-copy{font-family:var(--mono);font-size:.62rem;color:var(--slate);letter-spacing:.06em;width:100%;padding-top:1.5rem;border-top:1px solid var(--navy-4);margin-top:.5rem}
-@media(max-width:768px){footer{padding:2.5rem 1.25rem}}
+/* Built-for strip */
+.strip{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:1.05rem 0; }
+.strip .wrap{ display:flex; flex-wrap:wrap; gap:.4em 1.8em; align-items:baseline;
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); }
+.strip b{ color:var(--muted); font-weight:500; }
+.strip i{ font-style:normal; color:var(--ph); }
+</style>
+<style>
+/* ------------------------------------------------ PROBLEM SET */
+.swap-list{ border-top:1px solid var(--line); margin-top:.6rem; }
+.swap{
+  display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  gap:1.4rem; align-items:baseline; padding:1.35rem 0;
+  border-bottom:1px solid var(--line);
+}
+.swap .sym{ margin:0; color:var(--muted); font-size:1rem; }
+.swap .sym::before{ content:"“"; color:var(--dim); }
+.swap .sym::after{ content:"”"; color:var(--dim); }
+.swap .arr{ font-family:var(--mono); color:var(--ph); font-size:.95rem; transform:translateY(1px); }
+.swap .sys{ margin:0; color:var(--paper); font-size:1rem; }
+
+/* ------------------------------------------------ SERVICES */
+.grid-3{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1.1rem; margin-top:.8rem; }
+.card{
+  background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r);
+  padding:1.7rem 1.6rem 1.5rem; display:flex; flex-direction:column; gap:.75rem;
+  transition:transform .3s var(--ease), border-color .3s, box-shadow .3s;
+}
+.card:hover{ transform:translateY(-3px); border-color:var(--ph-soft); box-shadow:0 14px 40px rgba(0,0,0,.4), 0 0 0 1px var(--ph-glow); }
+.card h3{ font-size:1.35rem; }
+.card p{ margin:0; color:var(--muted); font-size:.95rem; }
+.card .deliv{
+  margin-top:auto; padding-top:1rem; border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--dim);
+}
+.card .deliv b{ color:var(--ph); font-weight:500; }
+
+/* ------------------------------------------------ SYSTEMS / PRODUCTS */
+.flagship{
+  display:grid; grid-template-columns:minmax(0, 6fr) minmax(0, 6fr);
+  gap:clamp(2.2rem, 5vw, 4.5rem); align-items:center;
+  padding:clamp(3rem, 6vw, 5rem) 0;
+}
+.flagship + .flagship{ border-top:1px solid var(--line); }
+.flagship.rev > .fig-col{ order:-1; }
+.sysline{ font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin:0 0 .9rem; }
+.sysline b{ color:var(--ph); font-weight:500; }
+.flagship h3{ font-size:clamp(1.9rem, 3.4vw, 2.6rem); margin-bottom:1rem; }
+.flagship .body p{ color:var(--muted); }
+.flagship .body p b, .flagship .body p strong{ color:var(--paper); font-weight:500; }
+.caps{ list-style:none; margin:1.4rem 0 1.6rem; padding:0; display:grid; gap:.75rem; }
+.caps li{ display:grid; grid-template-columns:auto 1fr; gap:.9em; align-items:baseline; color:var(--muted); font-size:.95rem; }
+.caps li::before{ content:"—"; font-family:var(--mono); color:var(--ph); }
+.caps li b{ color:var(--paper); font-weight:500; }
+.specrow{ display:flex; flex-wrap:wrap; gap:.5em 1.6em; padding-top:1.2rem; border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:.64rem; letter-spacing:.13em; text-transform:uppercase; color:var(--dim); }
+.specrow b{ color:var(--muted); font-weight:500; }
+
+/* Figures — schematic panels */
+.fig{ margin:0; }
+.fig figcaption{ font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:.8rem; }
+.panel{
+  background:#0b0e0d; border:1px solid var(--line); border-radius:var(--r);
+  padding:1.4rem 1.35rem; box-shadow:0 24px 60px rgba(0,0,0,.45);
+  font-family:var(--mono); font-size:.78rem; line-height:2; color:var(--muted);
+  overflow-x:auto;
+}
+.chain{ display:grid; gap:.15rem; min-width:340px; }
+.chain-row{ display:grid; grid-template-columns:3.4em 1fr auto 1.6em; gap:1em; align-items:baseline;
+  opacity:0; transform:translateY(6px); transition:opacity .5s var(--ease), transform .5s var(--ease); }
+.in .chain-row{ opacity:1; transform:none; }
+.in .chain-row:nth-child(1){ transition-delay:.05s; } .in .chain-row:nth-child(2){ transition-delay:.15s; }
+.in .chain-row:nth-child(3){ transition-delay:.25s; } .in .chain-row:nth-child(4){ transition-delay:.35s; }
+.in .chain-row:nth-child(5){ transition-delay:.45s; }
+.chain-row .idx{ color:var(--dim); }
+.chain-row .ev{ color:var(--paper); }
+.chain-row .hash{ color:var(--dim); }
+.chain-row .ok{ color:var(--ph); }
+.chain-foot{ margin-top:.9rem; padding-top:.9rem; border-top:1px dashed var(--line-2);
+  color:var(--ph); letter-spacing:.12em; text-transform:uppercase; font-size:.66rem; }
+
+.boundary{ display:grid; gap:1rem; min-width:320px; }
+.office{ border:1px solid var(--ph-soft); border-radius:10px; padding:1.1rem 1.15rem;
+  box-shadow:inset 0 0 40px var(--ph-glow); }
+.office .klabel{ margin-bottom:.9rem; color:var(--ph); }
+.office .klabel::after{ background:var(--ph-soft); }
+.flow{ display:flex; flex-wrap:wrap; align-items:center; gap:.6em; }
+.node{ border:1px solid var(--line-2); border-radius:7px; padding:.45em .8em; color:var(--paper); font-size:.7rem; letter-spacing:.1em; white-space:nowrap; }
+.flow .farr{ color:var(--ph); }
+.egress{ display:flex; align-items:center; gap:.8em; color:var(--dim); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; }
+.egress .x{ color:var(--ph); font-size:.95rem; }
+.egress s{ text-decoration-color:var(--dim); }
+
+/* Datasheet grid */
+.sheets{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.1rem; margin-top:3.4rem; }
+.sheet{ background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r); padding:1.7rem 1.6rem;
+  transition:transform .3s var(--ease), border-color .3s, box-shadow .3s; }
+.sheet:hover{ transform:translateY(-3px); border-color:var(--ph-soft); box-shadow:0 14px 40px rgba(0,0,0,.4); }
+.sheet header{ display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:.5em 1em; margin-bottom:1.2rem; }
+.sheet h4{ font-family:var(--serif); font-weight:500; font-size:1.45rem; color:var(--paper); margin:0; }
+.status{ font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ph);
+  border:1px solid var(--ph-soft); border-radius:5px; padding:.35em .7em; white-space:nowrap; }
+.status.dim{ color:var(--muted); border-color:var(--line-2); }
+.sheet dl{ margin:0; display:grid; gap:.85rem; }
+.sheet dt{ font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:.15rem; }
+.sheet dd{ margin:0; color:var(--muted); font-size:.92rem; }
+.sheet dd b{ color:var(--paper); font-weight:500; }
+
+/* ------------------------------------------------ FIELD NOTES */
+.notes{ display:grid; gap:1.1rem; margin-top:.8rem; }
+.note{ display:grid; grid-template-columns:auto 1fr; gap:clamp(1.4rem, 3.5vw, 3rem);
+  background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r); padding:1.9rem 1.8rem;
+  transition:border-color .3s, box-shadow .3s; }
+.note:hover{ border-color:var(--ph-soft); box-shadow:0 0 0 1px var(--ph-glow); }
+.note .nid{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; color:var(--dim); writing-mode:vertical-rl; text-orientation:mixed; }
+.note h3{ font-size:1.45rem; margin-bottom:.6rem; }
+.note p{ color:var(--muted); font-size:.96rem; margin-bottom:.9rem; }
+.note p b{ color:var(--paper); font-weight:500; }
+.note .meta{ display:flex; flex-wrap:wrap; gap:.5em 1.5em; font-family:var(--mono); font-size:.62rem; letter-spacing:.13em; text-transform:uppercase; color:var(--dim); }
+.note .meta i{ font-style:normal; color:var(--ph); }
+
+/* ------------------------------------------------ METHOD */
+.steps{ counter-reset:step; list-style:none; margin:1rem 0 0; padding:0;
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2.4rem 2rem; }
+.steps li{ counter-increment:step; position:relative; padding-top:1.1rem; border-top:1px solid var(--line); }
+.steps li::before{ content:counter(step, decimal-leading-zero); position:absolute; top:-0.72em; left:0;
+  background:var(--bg); padding-right:.8em;
+  font-family:var(--mono); font-size:.78rem; color:var(--ph); letter-spacing:.1em; }
+.steps h3{ font-size:1.25rem; margin-bottom:.45rem; }
+.steps p{ margin:0; color:var(--muted); font-size:.93rem; }
+.principles{ margin-top:4rem; border:1px solid var(--line); border-radius:var(--r); background:var(--bg-2);
+  padding:1.6rem 1.7rem; display:grid; gap:.9rem; }
+.principles p{ margin:0; font-family:var(--mono); font-size:.8rem; color:var(--muted); display:flex; gap:1em; }
+.principles p::before{ content:"§"; color:var(--ph); }
+.principles p b{ color:var(--paper); font-weight:500; }
+
+/* ------------------------------------------------ STACK */
+.stack{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1.1rem; margin-top:.8rem; }
+.stack .col{ border:1px solid var(--line); border-radius:var(--r); background:var(--bg-2); padding:1.4rem 1.5rem; }
+.stack h3{ font-family:var(--mono); font-size:.64rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:1rem; }
+.stack ul{ list-style:none; margin:0; padding:0; display:grid; gap:.45rem; }
+.stack li{ font-family:var(--mono); font-size:.82rem; color:var(--muted); }
+.stack li b{ color:var(--paper); font-weight:500; }
+.stack-note{ margin-top:1.6rem; color:var(--muted); font-size:.95rem; max-width:64ch; }
+.stack-note b{ color:var(--paper); font-weight:500; }
+
+/* ------------------------------------------------ INDUSTRIES */
+.inds{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.1rem; margin-top:.8rem; }
+.ind{ border:1px solid var(--line); border-radius:var(--r); background:var(--bg-2); padding:1.7rem 1.6rem;
+  transition:border-color .3s; }
+.ind:hover{ border-color:var(--ph-soft); }
+.ind header{ display:flex; align-items:baseline; justify-content:space-between; gap:1em; margin-bottom:.6rem; }
+.ind h3{ font-size:1.35rem; }
+.ind p{ margin:0; color:var(--muted); font-size:.94rem; }
+.ind p b{ color:var(--paper); font-weight:500; }
+.ind.primary{ border-color:var(--ph-soft); box-shadow:inset 0 0 60px var(--ph-glow); }
+
+/* ------------------------------------------------ AUDIT + SCOPER */
+.audit-grid{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:clamp(2.4rem,5vw,4.5rem); align-items:start; }
+.gets{ list-style:none; margin:1.6rem 0 0; padding:0; display:grid; gap:.8rem; }
+.gets li{ display:grid; grid-template-columns:auto 1fr; gap:.9em; color:var(--muted); font-size:.95rem; }
+.gets li::before{ content:"→"; font-family:var(--mono); color:var(--ph); }
+.gets li b{ color:var(--paper); font-weight:500; }
+.scoper{ border:1px solid var(--line); border-radius:var(--r); background:var(--bg-2); padding:1.7rem 1.6rem; }
+.scoper .klabel{ margin-bottom:1rem; }
+.chips{ display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:1.8rem; }
+.chip{
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); background:transparent; border:1px solid var(--line-2); border-radius:99px;
+  padding:.55em 1.05em; cursor:pointer; transition:color .2s, border-color .2s, box-shadow .2s, background .2s;
+}
+.chip:hover{ color:var(--paper); border-color:var(--ph-soft); }
+.chip[aria-pressed="true"]{ color:var(--ph); border-color:var(--ph); background:var(--ph-glow); box-shadow:0 0 14px var(--ph-glow); }
+.scoper-out{ box-shadow:none; }
+.scoper-out .term-body{ font-size:.74rem; white-space:pre-wrap; word-break:break-word; }
+.scoper-actions{ padding:0 1.25em 1.3em; }
+[hidden]{ display:none !important; }
+
+/* ------------------------------------------------ ABOUT */
+.about-grid{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:clamp(2.4rem,5vw,4.5rem); align-items:start; }
+.founder-card{ border:1px solid var(--line); border-radius:var(--r); background:var(--bg-2); padding:1.7rem 1.6rem; display:grid; gap:.9rem; }
+.founder-card .klabel{ margin:0; }
+.founder-card h3{ font-size:1.5rem; }
+.founder-card p{ margin:0; color:var(--muted); font-size:.94rem; }
+.certline{ font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); line-height:2; }
+
+/* ------------------------------------------------ FAQ */
+.faq{ border-top:1px solid var(--line); margin-top:.6rem; }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{
+  list-style:none; cursor:pointer; display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem;
+  padding:1.5rem 0; font-family:var(--serif); font-size:1.3rem; color:var(--paper);
+  transition:color .2s;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary .sig{ font-family:var(--mono); font-size:1rem; color:var(--dim); transition:transform .3s var(--ease), color .2s; flex:none; }
+.faq details[open] summary .sig{ transform:rotate(45deg); color:var(--ph); }
+.faq summary:hover .sig{ color:var(--ph); }
+.faq .a{ padding:0 0 1.7rem; color:var(--muted); max-width:68ch; }
+.faq .a b{ color:var(--paper); font-weight:500; }
+
+/* ------------------------------------------------ CONTACT + FOOTER */
+.contact{ text-align:left; }
+.mail{
+  display:inline-block; font-family:var(--mono); font-size:clamp(1.1rem, 3vw, 1.8rem); color:var(--paper);
+  margin:1.6rem 0 2rem; position:relative;
+}
+.mail::after{ content:""; position:absolute; left:0; bottom:-6px; height:1px; width:100%; background:var(--line-2); transition:background .3s; }
+.mail:hover::after{ background:var(--ph); }
+.footer{ border-top:1px solid var(--line); padding:3rem 0 3.4rem; }
+.footer .wrap{ display:grid; gap:1.4rem; }
+.foot-top{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; }
+.foot-links{ display:flex; flex-wrap:wrap; gap:1.6em; font-family:var(--mono); font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; }
+.foot-links a{ color:var(--muted); } .foot-links a:hover{ color:var(--paper); }
+.foot-fine{ font-family:var(--mono); font-size:.64rem; letter-spacing:.08em; color:var(--dim); line-height:2; }
+.foot-fine a{ color:var(--muted); }
+
+/* ------------------------------------------------ REVEAL */
+[data-reveal]{ opacity:0; transform:translateY(14px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+[data-reveal].in{ opacity:1; transform:none; }
+
+/* ------------------------------------------------ RESPONSIVE */
+@media (max-width: 980px){
+  .hero-grid, .flagship, .audit-grid, .about-grid{ grid-template-columns:1fr; }
+  .flagship.rev > .fig-col{ order:0; }
+  .grid-3{ grid-template-columns:1fr 1fr; }
+  .steps{ grid-template-columns:1fr 1fr; }
+  .stack{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 860px){
+  .nav-links{
+    position:fixed; inset:64px 0 auto 0; flex-direction:column; align-items:flex-start;
+    gap:0; background:rgba(10,12,11,.97); border-bottom:1px solid var(--line);
+    padding:.6rem clamp(20px,4.5vw,34px) 1.4rem;
+    transform:translateY(-8px); opacity:0; pointer-events:none;
+    transition:opacity .3s var(--ease), transform .3s var(--ease);
+  }
+  .nav-links.open{ opacity:1; transform:none; pointer-events:auto; }
+  .nav-links li{ width:100%; }
+  .nav-links a{ display:block; padding:.85rem 0; font-size:.78rem; border-bottom:1px solid var(--line); }
+  .menu-btn{ display:block; }
+}
+@media (max-width: 700px){
+  body{ font-size:15.5px; }
+  .grid-3, .sheets, .inds, .steps, .stack{ grid-template-columns:1fr; }
+  .swap{ grid-template-columns:1fr; gap:.5rem; }
+  .swap .arr{ transform:rotate(90deg); justify-self:start; }
+  .note{ grid-template-columns:1fr; gap:.9rem; }
+  .note .nid{ writing-mode:horizontal-tb; }
+  .term-body{ font-size:.74rem; }
+}
+
+/* ------------------------------------------------ REDUCED MOTION */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001s !important; animation-iteration-count:1 !important; transition-duration:.001s !important; }
+  [data-reveal]{ opacity:1; transform:none; }
+  .chain-row{ opacity:1; transform:none; }
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="#top" class="nav-brand">
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Bulging eye sockets on top of head -->
-      <circle cx="10" cy="10" r="5" fill="#b8f045" opacity="0.18"/>
-      <circle cx="22" cy="10" r="5" fill="#b8f045" opacity="0.18"/>
-      <!-- Eye socket outlines -->
-      <circle cx="10" cy="10" r="5" stroke="#b8f045" stroke-width="1.5"/>
-      <circle cx="22" cy="10" r="5" stroke="#b8f045" stroke-width="1.5"/>
-      <!-- Pupils -->
-      <circle cx="10" cy="10" r="2.5" fill="#b8f045"/>
-      <circle cx="22" cy="10" r="2.5" fill="#b8f045"/>
-      <!-- Pupil shine -->
-      <circle cx="11" cy="9" r="0.8" fill="#080d1a"/>
-      <circle cx="23" cy="9" r="0.8" fill="#080d1a"/>
-      <!-- Main head/body — wide flat frog shape -->
-      <path d="M4 14 Q4 8 10 8 Q16 6 22 8 Q28 8 28 14 Q28 22 16 23 Q4 22 4 14Z" fill="#b8f045" opacity="0.12"/>
-      <path d="M4 14 Q4 8 10 8 Q16 6 22 8 Q28 8 28 14 Q28 22 16 23 Q4 22 4 14Z" stroke="#b8f045" stroke-width="1.5"/>
-      <!-- Nostrils -->
-      <circle cx="13.5" cy="15" r="1" fill="#b8f045" opacity="0.6"/>
-      <circle cx="18.5" cy="15" r="1" fill="#b8f045" opacity="0.6"/>
-      <!-- Wide smile -->
-      <path d="M9 19 Q12 22 16 22 Q20 22 23 19" stroke="#b8f045" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <span class="nav-brand-text">Tech<span>Frog</span></span>
-  </a>
-  <ul class="nav-items">
-    <li><a href="#who">Who We Serve</a></li>
-    <li><a href="#solution">How It Works</a></li>
-    <li><a href="#offer">Pricing</a></li>
-    <li><a href="#trust">Results</a></li>
-  </ul>
-  <a href="#book" class="nav-btn dsk">Book Audit</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mob-menu" id="mobMenu">
-  <a href="#who" class="mob-link">Who We Serve</a>
-  <a href="#solution" class="mob-link">How It Works</a>
-  <a href="#offer" class="mob-link">Pricing</a>
-  <a href="#trust" class="mob-link">Results</a>
-  <a href="#book" class="nav-btn">Book Workflow Audit</a>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-dots"></div>
-  <div class="hero-left">
-    <div class="hero-kicker">
-      <span class="tag">AI-Powered Business Automation</span>
+<!-- ================================================ NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Tech Frog Consulting — home">
+      <span class="mark" aria-hidden="true"></span>
+      <span>TECH FROG</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#systems">Systems</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex; align-items:center; gap:.7rem;">
+      <a class="nav-cta" href="#audit">Book the audit</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
     </div>
-    <h1>Your Business Is Paying People To Do Work That Should <span class="accent">Run Itself.</span></h1>
-    <p class="hero-sub">Tech Frog Consulting builds AI-powered automation systems that eliminate operational drag, reduce manual labor, and scale your output — without scaling your headcount.</p>
-    <div class="hero-actions">
-      <a href="#book" class="btn-primary">→ Book a Workflow Audit</a>
-      <a href="#solution" class="btn-ghost">See How It Works</a>
-    </div>
-    <p class="hero-micro">30 minutes · No pitch · We diagnose before we prescribe</p>
   </div>
-  <div class="hero-right">
-    <div class="hero-terminal">
-      <div class="terminal-bar">
-        <div class="terminal-dot" style="background:#ff5f57"></div>
-        <div class="terminal-dot" style="background:#febc2e"></div>
-        <div class="terminal-dot" style="background:#28c840"></div>
-        <span style="font-family:var(--mono);font-size:.62rem;color:var(--slate);margin-left:auto;letter-spacing:.08em">workflow_audit.sh</span>
+</header>
+
+<main id="main">
+
+<!-- ================================================ HERO -->
+<section class="hero" id="top" aria-label="Introduction">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="klabel"><b>TECH FROG CONSULTING</b> AUSTIN, TEXAS</p>
+      <h1>Operational infrastructure for <em>small firms.</em></h1>
+      <p class="lede">We design and build the systems small businesses run on: <strong>applied AI with review gates</strong>, automation that survives staff turnover, security sized to a ten-person firm, and custom software you own outright. Engineered, documented, verifiable.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact">Request a consultation</a>
+        <a class="btn btn-ghost" href="#systems">Examine the systems</a>
       </div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">run workflow-audit --target=operations</span></div>
-        <div class="t-line"><span class="t-out warn">→ Scanning intake process...</span></div>
-        <div class="t-line"><span class="t-out warn">→ Found 4 manual handoff points</span></div>
-        <div class="t-line"><span class="t-out warn">→ Est. cost: 23 hrs/week @ $65/hr</span></div>
-        <div class="t-line"><span class="t-out good">→ Automatable: 91%</span></div>
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">run compliance-check --stack=current</span></div>
-        <div class="t-line"><span class="t-out warn">→ 2 data exposure vectors flagged</span></div>
-        <div class="t-line"><span class="t-out warn">→ Audit trail: MISSING</span></div>
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">generate-roi-report</span></div>
-        <div class="t-line"><span class="t-out good">→ Recoverable margin: $18,400/mo</span></div>
-        <div class="t-line"><span class="t-out good">→ Payback period: 2.1 months</span></div>
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cursor"></span></div>
+      <p class="hero-note"><span class="dot" aria-hidden="true"></span> NOW SCHEDULING FOR Q4 2026</p>
+    </div>
+    <div>
+      <div class="term" data-reveal>
+        <div class="term-bar"><i></i><i></i><i></i><em>techfrog — status</em></div>
+<pre class="term-body" id="boot"><span class="cmd">$ techfrog --status</span>
+
+  argos ............ <span class="val">v3 · internal production</span>
+  sidebar .......... <span class="val">v0.1.0 · packaged</span>
+  audit chain ...... <span class="val">verified</span> <span class="ok">✓</span>
+  engagements ...... <span class="val">open · Q4 2026</span>
+
+ready.<span class="caret" aria-hidden="true"></span></pre>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-inner">
-    <span class="ticker-item">Workflow Automation</span>
-    <span class="ticker-item">AI Integration</span>
-    <span class="ticker-item">Process Redesign</span>
-    <span class="ticker-item">Operational Leverage</span>
-    <span class="ticker-item">Compliance-Safe Builds</span>
-    <span class="ticker-item">Zero-Code Handoffs</span>
-    <span class="ticker-item">API Orchestration</span>
-    <span class="ticker-item">Intelligent Document Processing</span>
-    <span class="ticker-item">Human-in-the-Loop Systems</span>
-    <span class="ticker-item">Workflow Automation</span>
-    <span class="ticker-item">AI Integration</span>
-    <span class="ticker-item">Process Redesign</span>
-    <span class="ticker-item">Operational Leverage</span>
-    <span class="ticker-item">Compliance-Safe Builds</span>
-    <span class="ticker-item">Zero-Code Handoffs</span>
-    <span class="ticker-item">API Orchestration</span>
-    <span class="ticker-item">Intelligent Document Processing</span>
-    <span class="ticker-item">Human-in-the-Loop Systems</span>
+<!-- Built-for strip -->
+<aside class="strip" aria-label="Who this is for">
+  <div class="wrap">
+    <b>BUILT FOR</b>
+    <span>LAW FIRMS <i>·</i> MSPs <i>·</i> HVAC &amp; FIELD SERVICES <i>·</i> PROFESSIONAL SERVICES <i>·</i> FOUNDERS</span>
   </div>
-</div>
+</aside>
 
-<!-- STATS -->
-<div class="stats-sec">
-  <div class="stats-grid">
-    <div class="stat-card"><span class="stat-n">$18K+</span><p class="stat-l">Avg. recoverable margin found per audit</p></div>
-    <div class="stat-card"><span class="stat-n">72hrs</span><p class="stat-l">Time to first automation in production</p></div>
-    <div class="stat-card"><span class="stat-n">10–100</span><p class="stat-l">Staff — our target business size</p></div>
-    <div class="stat-card"><span class="stat-n">91%</span><p class="stat-l">Of manual tasks identified as automatable</p></div>
-  </div>
-</div>
-
-<!-- PROBLEM -->
-<section class="problem-sec" id="problem">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="tag">The Real Problem</div>
-      <h2>The Problem Isn't That You Need More Software.</h2>
-    </div>
-    <div class="problem-layout">
-      <div class="problem-body">
-        <p>Your team isn't slow. Your people aren't the problem. The problem is that your operations were built <strong>one tool at a time</strong>, by different people, solving different problems — with nobody looking at the whole picture.</p>
-        <p>Data gets entered twice. Approvals happen over email. Reports get built by hand every week. Onboarding is a checklist in someone's head.</p>
-        <p>And somewhere in all of it, you're paying skilled people to do work a <strong>$200/month automation</strong> could handle.</p>
-        <p>Your current IT vendor keeps your systems running. What they don't do — what they <em>can't</em> do — is look at how your business actually operates and redesign it for leverage.</p>
-        <p style="color:var(--white);font-weight:500">That's the gap. That's what we fix.</p>
+<!-- ================================================ SYS/01 — PROBLEM SET -->
+<section class="cv" id="problems" aria-labelledby="problems-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/01</b> THE PROBLEM SET</p>
+    <h2 id="problems-h" data-reveal>Nothing here is exotic.<br>It's just unfixed.</h2>
+    <p class="lede" data-reveal style="margin-top:1.2rem;">Small firms lose margin to the same quiet failures. Each one maps to a system. Left side is what it sounds like inside your firm; right side is what we build.</p>
+    <div class="swap-list" data-reveal>
+      <div class="swap">
+        <p class="sym">The same document gets rebuilt from scratch every week.</p><span class="arr" aria-hidden="true">→</span>
+        <p class="sys">Template and assembly pipeline with human review gates.</p>
       </div>
-      <div>
-        <div class="tag" style="margin-bottom:1rem">Operational Drag Symptoms — Check Yours</div>
-        <div class="symptom-list">
-          <div class="symptom"><span class="symptom-num">01</span><span class="symptom-text">Data entered manually into more than one system</span></div>
-          <div class="symptom"><span class="symptom-num">02</span><span class="symptom-text">Reports built by copying and pasting from multiple tools</span></div>
-          <div class="symptom"><span class="symptom-num">03</span><span class="symptom-text">New client onboarding requires staff to repeat the same steps from memory</span></div>
-          <div class="symptom"><span class="symptom-num">04</span><span class="symptom-text">Approvals happen over email with no documented audit trail</span></div>
-          <div class="symptom"><span class="symptom-num">05</span><span class="symptom-text">You've bought software that solves one problem but nobody uses it consistently</span></div>
-          <div class="symptom"><span class="symptom-num">06</span><span class="symptom-text">Staff spends time on tasks they could explain to a machine in five minutes</span></div>
-          <div class="symptom"><span class="symptom-num">07</span><span class="symptom-text">You don't know exactly how long your core processes take or what they cost</span></div>
-        </div>
-        <p style="font-family:var(--mono);font-size:.65rem;color:var(--slate);letter-spacing:.08em;margin-top:1rem;line-height:1.7">Check ✔️ one or more? You're a candidate for a Workflow Audit.</p>
+      <div class="swap">
+        <p class="sym">Intake lives in one person's inbox.</p><span class="arr" aria-hidden="true">→</span>
+        <p class="sys">Governed intake: captured, routed, logged, followed up.</p>
+      </div>
+      <div class="swap">
+        <p class="sym">Our tools don't talk to each other.</p><span class="arr" aria-hidden="true">→</span>
+        <p class="sys">An integration layer between the software you already pay for.</p>
+      </div>
+      <div class="swap">
+        <p class="sym">The process only exists in someone's head.</p><span class="arr" aria-hidden="true">→</span>
+        <p class="sys">Runbooks and documentation, treated as a first-class deliverable.</p>
+      </div>
+      <div class="swap">
+        <p class="sym">We couldn't pass our own client's security questionnaire.</p><span class="arr" aria-hidden="true">→</span>
+        <p class="sys">A security baseline: identity, email, endpoints, backups, written policy.</p>
+      </div>
+      <div class="swap">
+        <p class="sym">We want AI in the workflow but can't risk it being wrong.</p><span class="arr" aria-hidden="true">→</span>
+        <p class="sys">Verification-gated AI: humans approve, systems log, hashes prove.</p>
+      </div>
+      <div class="swap">
+        <p class="sym">Nobody can see the state of the business without asking around.</p><span class="arr" aria-hidden="true">→</span>
+        <p class="sys">Operational dashboards over a single source of truth.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOLUTION -->
-<section class="solution-sec" id="solution">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="tag">The Framework</div>
-      <h2>What It Looks Like When Someone Actually Understands Your Operations</h2>
-    </div>
-    <div class="phases">
-      <div class="phase">
-        <div class="phase-n">01</div>
-        <span class="tag phase-tag">Phase One</span>
-        <h3>Workflow Audit</h3>
-        <p>We map every manual touchpoint in your operations — intake, fulfillment, reporting, approvals — and quantify what each one costs in time, risk, and staff capacity.</p>
-        <p class="phase-note">* Most businesses identify $8K–$25K in recoverable margin in this phase alone.</p>
-      </div>
-      <div class="phase">
-        <div class="phase-n">02</div>
-        <span class="tag phase-tag">Phase Two</span>
-        <h3>Compliance-Safe Build</h3>
-        <p>We design and deploy automation workflows using enterprise-grade tooling. Every system is built with your data security, audit trail requirements, and integration constraints already accounted for.</p>
-        <p class="phase-note">* Your IT vendor patches after the breach. We architect before it.</p>
-      </div>
-      <div class="phase">
-        <div class="phase-n">03</div>
-        <span class="tag phase-tag">Phase Three</span>
-        <h3>Operate &amp; Optimize</h3>
-        <p>We don't hand you a system and disappear. We run it, monitor it, and tune it as your business grows. A dedicated operational partner — not a help desk ticket.</p>
-        <p class="phase-note">* Quarterly reviews, guaranteed SLAs, one point of contact who knows your business by name.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DIFFERENTIATION -->
-<section class="diff-sec" id="diff">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="tag">The Difference</div>
-      <h2>We Are Not Your IT Vendor.</h2>
-    </div>
-    <div class="diff-split">
-      <div>
-        <p class="diff-headline">Most MSPs sell <span>infrastructure.</span><br>We sell operational leverage<br>with a measurable return.</p>
-        <p class="diff-body">The distinction matters because it changes what we're optimizing for. Your IT vendor is optimizing for uptime. We're optimizing for output-per-employee. Those are different problems with different solutions.</p>
-        <table class="vs-table">
-          <thead><tr><th>Capability</th><th>Typical MSP</th><th>Tech Frog</th></tr></thead>
-          <tbody>
-            <tr><td>Understands your workflows</td><td class="bad">✗</td><td class="good">✓</td></tr>
-            <tr><td>Builds AI automations</td><td class="bad">✗</td><td class="good">✓</td></tr>
-            <tr><td>Compliance-aware design</td><td class="bad">✗</td><td class="good">✓</td></tr>
-            <tr><td>Measures ROI on work done</td><td class="bad">✗</td><td class="good">✓</td></tr>
-            <tr><td>Keeps lights on</td><td class="good">✓</td><td class="good">✓</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="diff-cards">
-        <div class="diff-card"><h4>We Speak Operations, Not Just IT</h4><p>We've worked inside business processes across industries. We know where workflows break down, why staff work around systems, and which automations create risk instead of removing it.</p></div>
-        <div class="diff-card"><h4>Infrastructure Depth</h4><p>We don't just consult. We build. The automation stack we deploy is enterprise-grade architecture at SMB pricing — without the 18-month timeline.</p></div>
-        <div class="diff-card"><h4>Compliance-First Design</h4><p>Every workflow is reviewed against your data handling requirements before it goes live. Not retrofitted — designed in. The difference between automation that helps and automation that exposes you.</p></div>
-        <div class="diff-card"><h4>Operational Partner, Not Vendor</h4><p>We're retained because we deliver measurable ROI, not because you're locked in. The retainer justifies itself inside the first billing cycle or the conversation changes.</p></div>
-      </div>
+<!-- ================================================ SYS/02 — SERVICES -->
+<section class="cv" id="services" aria-labelledby="services-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/02</b> SERVICES</p>
+    <h2 id="services-h" data-reveal>Six disciplines. One standard.</h2>
+    <p class="lede" data-reveal style="margin-top:1.2rem;">Every engagement ships the same way: scoped in writing, built to be checked, documented so the client owns it.</p>
+    <div class="grid-3">
+      <article class="card" data-reveal>
+        <h3>Workflow Engineering</h3>
+        <p>We map how work actually moves — intake, handoffs, approvals, filing — then rebuild the path. Every workflow ships with named owners, failure states, and escalation rules.</p>
+        <p class="deliv"><b>DELIVERABLE</b> — DOCUMENTED WORKFLOW + BUILD</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Applied AI</h3>
+        <p>Language models put to work inside existing processes: drafting, summarization, extraction, classification. Every output passes a human review gate. Every action lands in an audit log.</p>
+        <p class="deliv"><b>DELIVERABLE</b> — GATED AI PIPELINE</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Automation Systems</h3>
+        <p>Scheduled jobs, integrations, and pipelines that remove repetitive work. Built on boring, reliable tools and monitored so failures surface before clients notice them.</p>
+        <p class="deliv"><b>DELIVERABLE</b> — MONITORED AUTOMATION</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Security Posture</h3>
+        <p>Practical hardening sized to a small firm: identity, email, endpoints, backups, and the written policies to match. No enterprise theater.</p>
+        <p class="deliv"><b>DELIVERABLE</b> — BASELINE + POLICY SET</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Custom Software</h3>
+        <p>Small, sharp internal tools where off-the-shelf doesn't fit: intake systems, CRMs, dashboards. Typed, tested, documented, and handed over. You own the code.</p>
+        <p class="deliv"><b>DELIVERABLE</b> — SOURCE + DOCS + TRAINING</p>
+      </article>
+      <article class="card" data-reveal>
+        <h3>Research Systems</h3>
+        <p>Structured open-source research (OSINT) with documented sourcing and verification at every step. A repeatable process with a chain of custody — not a one-off report.</p>
+        <p class="deliv"><b>DELIVERABLE</b> — SOURCED RESEARCH SYSTEM</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- WHO WE SERVE -->
-<section class="who-sec" id="who">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="tag">Who This Is For</div>
-      <h2>We're Selective. Intentionally.</h2>
-    </div>
-    <div class="who-grid">
-      <div class="who-card">
-        <h4>We work best with:</h4>
-        <ul>
-          <li>Owner-operated or partner-led businesses</li>
-          <li>10–100 staff, already generating revenue</li>
-          <li>Already spending on software and IT support</li>
-          <li>Frustrated that operations don't match ambition</li>
-          <li>Decision-maker is accessible and engaged</li>
-          <li>Any industry — operational drag looks the same everywhere</li>
+<!-- ================================================ SYS/03 — SYSTEMS ON RECORD -->
+<section class="cv" id="systems" aria-labelledby="systems-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/03</b> SYSTEMS ON RECORD</p>
+    <h2 id="systems-h" data-reveal>We don't describe systems.<br>We show them.</h2>
+    <p class="lede" data-reveal style="margin-top:1.2rem;">Everything on this page exists. Status labels are accurate as of this writing — and we'd rather show you a working audit log than an adjective.</p>
+
+    <!-- ArgosOS -->
+    <article class="flagship" data-reveal>
+      <div class="body">
+        <p class="sysline"><b>ARGOS OS</b> · V3 · INTERNAL PRODUCTION</p>
+        <h3>ArgosOS</h3>
+        <p>A vertical operating system for small law firms: intake, CRM, collections, and audit in one governed environment. <b>Argos runs Tech Frog's own back office — we are client zero.</b></p>
+        <ul class="caps">
+          <li><span><b>Typed verification engine.</b> Claims are typed, checked, and gated before they act. An unverified claim cannot trigger a downstream step.</span></li>
+          <li><span><b>Hash-chained audit log.</b> Every material action is SHA-256 chained to the one before it. Tampering doesn't hide — it breaks the chain visibly.</span></li>
+          <li><span><b>Collections state machine.</b> Receivables move through explicit states with owners and timers. Nothing sits in "someone should follow up."</span></li>
+          <li><span><b>Model-agnostic AI layer.</b> Anthropic, OpenAI, or local inference. The workflow doesn't care which model answers.</span></li>
         </ul>
+        <p><b>Findings on record:</b> V2 went through a structured hostile review of our own design. V3 answered it — fully typed codebase, test coverage, and a written resolution of every finding. The review documents ship with the system.</p>
+        <p class="specrow"><b>STACK</b> PYTHON · SQLITE · STREAMLIT <b>AUDIT</b> SHA-256 CHAIN <b>STATUS</b> V3</p>
       </div>
-      <div class="who-card exclude">
-        <h4>We're not the right fit for:</h4>
-        <ul>
-          <li>Pre-revenue startups or solo operators</li>
-          <li>Businesses looking for the cheapest option</li>
-          <li>Companies that want a vendor to manage, not a partner to build</li>
-          <li>Anyone who needs 18 months to make a decision</li>
-        </ul>
-      </div>
-    </div>
-    <p style="font-family:var(--mono);font-size:.7rem;color:var(--slate);margin-top:1.5rem;letter-spacing:.07em;line-height:1.7">If that second list is you — no hard feelings. We'll point you somewhere useful on the call.</p>
-  </div>
-</section>
-
-<!-- OFFER -->
-<section class="offer-sec" id="offer">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="tag">Engagements</div>
-      <h2>Two Offerings. No Ambiguity.<br>No Retainer Until We've Proven Value.</h2>
-    </div>
-    <div class="offer-grid">
-      <div class="offer-card">
-        <div class="offer-eyebrow"><span class="tag">Entry Point</span></div>
-        <div class="offer-title">Operational Drag Audit</div>
-        <div class="offer-price">$1,500</div>
-        <p class="offer-desc">A 30-day deep-dive into your business operations. Standalone deliverable — valuable whether or not you engage further.</p>
-        <ul class="offer-list">
-          <li>Complete workflow map with cost-per-process breakdown</li>
-          <li>Prioritized automation opportunities ranked by ROI</li>
-          <li>Tech stack assessment and integration gap analysis</li>
-          <li>Written recommendations report, plain English</li>
-          <li>30-min debrief call with findings and next steps</li>
-        </ul>
-        <a href="#book" class="btn-ghost" style="width:100%;text-align:center;display:block">Start With the Audit</a>
-      </div>
-      <div class="offer-card featured">
-        <div class="offer-eyebrow"><span class="tag">Retained Partnership</span></div>
-        <div class="offer-title">Automation Retainer</div>
-        <div class="offer-price">$3,500<sub>/mo</sub></div>
-        <p class="offer-desc">Ongoing design, deployment, and management of your automation infrastructure. A dedicated operational partner — not a help desk ticket.</p>
-        <ul class="offer-list">
-          <li>Workflow builds and continuous optimization</li>
-          <li>AI integration and model management</li>
-          <li>System integrations and API orchestration</li>
-          <li>Dedicated point of contact, guaranteed SLA</li>
-          <li>Quarterly operational reviews with ROI reporting</li>
-          <li>Priority access and same-business-day response</li>
-        </ul>
-        <a href="#book" class="btn-primary" style="width:100%;text-align:center;display:block">Apply for a Retainer Spot</a>
-        <p class="offer-note">Limited new retained clients per quarter. Not scarcity marketing — it's how we maintain the quality that justifies what we charge.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST -->
-<section class="trust-sec" id="trust">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="tag">Results</div>
-      <h2>Results That Justify the Retainer</h2>
-    </div>
-    <div class="case-wrap">
-      <div class="case-label">Case Study</div>
-      <div class="case-inner">
-        <div class="case-meta">
-          <div class="case-meta-item"><span>Business Type</span><strong>Regional Distribution Co.</strong></div>
-          <div class="case-meta-item"><span>Size</span><strong>34 Staff</strong></div>
-          <div class="case-meta-item"><span>Location</span><strong>Texas</strong></div>
-          <div class="case-meta-item"><span>Status</span><strong>Retained — Month 8</strong></div>
-        </div>
-        <div class="case-cols">
-          <div class="case-col">
-            <h5>The Situation</h5>
-            <p>Order intake required staff to manually enter data across three systems. Weekly reporting consumed a full day of a senior employee's time. No audit trail on inventory adjustments. Entirely manual — error-prone and unscalable.</p>
+      <div class="fig-col">
+        <figure class="fig" data-reveal>
+          <figcaption>FIG. 01 — AUDIT CHAIN · SCHEMATIC</figcaption>
+          <div class="panel">
+            <div class="chain">
+              <div class="chain-row"><span class="idx">0417</span><span class="ev">intake.created</span><span class="hash">a3f2…9c1b</span><span class="ok">✓</span></div>
+              <div class="chain-row"><span class="idx">0418</span><span class="ev">conflict.checked</span><span class="hash">7d08…44e0</span><span class="ok">✓</span></div>
+              <div class="chain-row"><span class="idx">0419</span><span class="ev">retainer.drafted</span><span class="hash">e91c…02af</span><span class="ok">✓</span></div>
+              <div class="chain-row"><span class="idx">0420</span><span class="ev">human.approved</span><span class="hash">50b3…c77d</span><span class="ok">✓</span></div>
+              <div class="chain-row"><span class="idx">0421</span><span class="ev">matter.opened</span><span class="hash">bd67…1e94</span><span class="ok">✓</span></div>
+              <p class="chain-foot">CHAIN INTEGRITY — VERIFIED · EACH HASH BINDS THE LAST</p>
+            </div>
           </div>
-          <div class="case-col">
-            <h5>What We Built</h5>
-            <p>Automated order-to-fulfillment pipeline with real-time system sync. Replaced the weekly reporting process with a live dashboard that updates automatically. Added an audit-logged adjustment system that eliminated the compliance exposure entirely.</p>
+          <!-- SCREENSHOT SLOT (replace schematic when ready):
+          <img src="assets/argos-audit.png" alt="ArgosOS audit log interface" loading="lazy" width="1200" height="760">
+          -->
+        </figure>
+      </div>
+    </article>
+
+    <!-- Sidebar -->
+    <article class="flagship rev" data-reveal>
+      <div class="body">
+        <p class="sysline"><b>SIDEBAR</b> · V0.1.0 · PRE-RELEASE</p>
+        <h3>Sidebar</h3>
+        <p>A local-first AI appliance for law firms. The model runs on hardware in your office. <b>Client files never leave the building — not for inference, not for training, not ever.</b></p>
+        <p>Privilege doesn't survive a data pipeline you can't see. Sidebar removes the pipeline.</p>
+        <ul class="caps">
+          <li><span><b>On-premise inference.</b> Drafting and summarization over local matter files, on a machine you can point at.</span></li>
+          <li><span><b>No cloud dependency</b> for core function. The internet can go down; your research assistant doesn't.</span></li>
+          <li><span><b>Care subscription.</b> Updates, monitoring, and support delivered without moving your data.</span></li>
+        </ul>
+        <p class="specrow"><b>SOLO</b> $3,495 <b>FIRM</b> $5,495 <b>SUITE</b> $7,995 <b>CARE</b> MONTHLY</p>
+        <p class="specrow" style="border-top:0; padding-top:.4rem;"><b>STATUS</b> V0.1.0 PACKAGED <b>TARGET AVAILABILITY</b> Q4 2026</p>
+      </div>
+      <div class="fig-col">
+        <figure class="fig" data-reveal>
+          <figcaption>FIG. 02 — DATA BOUNDARY · SCHEMATIC</figcaption>
+          <div class="panel">
+            <div class="boundary">
+              <div class="office">
+                <p class="klabel">YOUR OFFICE</p>
+                <div class="flow">
+                  <span class="node">MATTER FILES</span><span class="farr">→</span>
+                  <span class="node">LOCAL INFERENCE</span><span class="farr">→</span>
+                  <span class="node">DRAFTS + AUDIT LOG</span>
+                </div>
+              </div>
+              <p class="egress"><span class="x" aria-hidden="true">✕</span> NO EGRESS — <s>CLOUD</s> · NOTHING CROSSES THE BUILDING LINE</p>
+            </div>
           </div>
-        </div>
-        <div class="case-outcome">
-          <strong>Outcome: 28 hours of manual labor recovered per week. Zero reporting errors in 8 months.</strong>
-          <p>At their fully-loaded labor cost, the automation retainer paid for itself in the first 9 days of each month.</p>
-        </div>
+          <!-- SCREENSHOT SLOT (replace schematic when ready):
+          <img src="assets/sidebar-appliance.png" alt="Sidebar appliance interface" loading="lazy" width="1200" height="760">
+          -->
+        </figure>
       </div>
+    </article>
+
+    <!-- Datasheets -->
+    <div class="sheets">
+      <article class="sheet" data-reveal>
+        <header><h4>Investor Intelligence</h4><span class="status">OPERATIONAL · INTERNAL</span></header>
+        <dl>
+          <dt>Overview</dt><dd>Eight research modules covering sourcing, screening, and diligence workflows, built as an ArgosOS module.</dd>
+          <dt>Capabilities</dt><dd>Entity profiles, screening pipelines, diligence checklists — each step logged to the same audit chain as everything else in Argos.</dd>
+          <dt>Architecture</dt><dd><b>Runs inside ArgosOS.</b> Python, SQLite, model-agnostic AI layer.</dd>
+          <dt>Finding</dt><dd>Research that can't cite its sources is an opinion. Every claim in the system carries provenance.</dd>
+        </dl>
+        <!-- SCREENSHOT SLOT: <img src="assets/investor-intel.png" alt="Investor Intelligence modules" loading="lazy" width="1200" height="760"> -->
+      </article>
+      <article class="sheet" data-reveal>
+        <header><h4>Production Finance CRM</h4><span class="status dim">DELIVERED · PRIVATE ENGAGEMENT</span></header>
+        <dl>
+          <dt>Overview</dt><dd>Financing model, executive brief, and a working CRM built for an independent film production company. Client name withheld; the work isn't.</dd>
+          <dt>Capabilities</dt><dd>Tracks talent attachments, sales representation, and financing conversations against a multi-scenario finance model.</dd>
+          <dt>Architecture</dt><dd>Python, Streamlit, structured finance workbook.</dd>
+          <dt>Finding</dt><dd><b>The binding constraint was attached talent and sales representation — not software.</b> We reported that, and scoped accordingly.</dd>
+        </dl>
+      </article>
+      <article class="sheet" data-reveal>
+        <header><h4>Verification Systems</h4><span class="status">PATTERN · IN PRODUCTION</span></header>
+        <dl>
+          <dt>Overview</dt><dd>The discipline underneath everything we build: typed claims, human review gates, hash-chained logs.</dd>
+          <dt>Capabilities</dt><dd>Makes AI output checkable by construction. An answer either passes verification or it doesn't act.</dd>
+          <dt>Architecture</dt><dd>Deployed in ArgosOS; available as a standalone pattern for client systems.</dd>
+          <dt>Finding</dt><dd>Trust is a property of the system, not the model. Design for the audit, and the accuracy follows.</dd>
+        </dl>
+      </article>
+      <article class="sheet" data-reveal>
+        <header><h4>Automation Systems</h4><span class="status dim">ENGAGEMENT OFFERING</span></header>
+        <dl>
+          <dt>Overview</dt><dd>Integration and pipeline work delivered as fixed-scope engagements: scheduled jobs, data handoffs, follow-up sequences.</dd>
+          <dt>Capabilities</dt><dd>Connects the software a firm already pays for; removes re-entry and manual relay work.</dd>
+          <dt>Architecture</dt><dd>Boring, reliable tools. Monitored. Documented. Owned by the client.</dd>
+          <dt>Finding</dt><dd>The best automation is the one your newest hire can operate from the runbook alone.</dd>
+        </dl>
+      </article>
+      <article class="sheet" data-reveal style="grid-column:1 / -1;">
+        <header><h4>Workflow Audits</h4><span class="status">OFFERING · BOOKING Q4 2026</span></header>
+        <dl>
+          <dt>Overview</dt><dd>The front door to every engagement. Fixed fee, fixed scope: a full map of how work moves through your firm and where it breaks.</dd>
+          <dt>Capabilities</dt><dd>Current-state map, prioritized fixes with effort estimates, security baseline check, 90-day build plan. <b>A document worth keeping even if you never hire us again.</b></dd>
+          <dt>Status</dt><dd>Scoping tool below. Consultations booking now for Q4 2026.</dd>
+        </dl>
+      </article>
     </div>
-    <div class="placeholder-block">[ PLACEHOLDER ] Additional case studies shared directly during the Workflow Audit consultation. Results are not published without client approval — but comparable engagements are walked through on every call. Named references available for qualified businesses upon request.</div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="cta-sec" id="book">
-  <div class="sec-inner">
-    <div class="tag">Ready?</div>
-    <h2>Stop Paying For Work<br><span>That Should Run Itself.</span></h2>
-    <p>Book a 30-minute Workflow Audit call. We'll identify your two or three highest-impact automation opportunities and tell you honestly whether we're the right fit to build them.</p>
-    <a href="mailto:support@techfrogconsulting.com?subject=Workflow Audit Request" class="btn-primary" style="font-size:.8rem;padding:1rem 2.5rem">→ Schedule the Audit Call</a>
-    <div class="cta-points">
-      <span>Available to 10–100 staff businesses</span>
-      <span>Limited new engagements per month</span>
-      <span>No pitch — diagnosis first</span>
-    </div>
-    <div class="email-capture">
-      <p><strong>Not ready to talk yet?</strong><br>Download the Operational Drag Checklist — 15 workflow gaps most businesses don't know they're paying for.</p>
-      <div class="email-row" id="emailRow">
-        <input type="email" id="emailInput" placeholder="your@business.com"/>
-        <button onclick="handleEmail()">Get It</button>
-      </div>
-      <div class="email-thanks" id="emailThanks" style="display:none">✓ CHECK YOUR INBOX</div>
+<!-- ================================================ SYS/04 — FIELD NOTES -->
+<section class="cv" id="notes" aria-labelledby="notes-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/04</b> FIELD NOTES</p>
+    <h2 id="notes-h" data-reveal>Work on record.</h2>
+    <p class="lede" data-reveal style="margin-top:1.2rem;">Client names appear only with written permission. The work is real either way.</p>
+    <div class="notes">
+      <article class="note" data-reveal>
+        <span class="nid" aria-hidden="true">NOTE / 01</span>
+        <div>
+          <h3>Intake to retainer, small law</h3>
+          <p>Reference design for governed intake through signed retainer: capture, conflict check, drafting with review gates, e-signature, and a hash-chained record of every step. Benchmarked against the Clio 2025 Legal Trends Report. <b>The proposal states its own confidence level and lists what we don't know yet</b> — in the document itself.</p>
+          <p class="meta"><span>STATUS <i>REFERENCE DESIGN</i></span><span>DOMAIN <i>LEGAL</i></span><span>BENCHMARK <i>CLIO 2025</i></span></p>
+        </div>
+      </article>
+      <article class="note" data-reveal>
+        <span class="nid" aria-hidden="true">NOTE / 02</span>
+        <div>
+          <h3>Entertainment finance intelligence</h3>
+          <p>Multi-scenario financing model, executive brief, and working CRM for an independent film production company. The analysis surfaced that the project's binding constraint was bankable attached talent and sales representation — not tooling. <b>We put that in writing rather than selling more software.</b></p>
+          <p class="meta"><span>STATUS <i>DELIVERED</i></span><span>DOMAIN <i>FILM FINANCE</i></span><span>CLIENT <i>WITHHELD</i></span></p>
+        </div>
+      </article>
+      <article class="note" data-reveal>
+        <span class="nid" aria-hidden="true">NOTE / 03</span>
+        <div>
+          <h3>ArgosOS, V2 to V3</h3>
+          <p>We ran a structured hostile review against our own system, documented every finding, then closed them one by one: full typing, test coverage, and an architecture document. <b>The resolution log is part of the codebase</b>, not a memo that disappeared.</p>
+          <p class="meta"><span>STATUS <i>SHIPPED</i></span><span>DOMAIN <i>INTERNAL SYSTEMS</i></span><span>ARTIFACTS <i>ARCHITECTURE.MD · RESOLUTION LOG</i></span></p>
+        </div>
+      </article>
+      <article class="note" data-reveal>
+        <span class="nid" aria-hidden="true">NOTE / 04</span>
+        <div>
+          <h3>Corpus migration, 1,668 conversations</h3>
+          <p>A working history extracted from one AI platform and migrated to another through a custom Python pipeline — schema mapping and integrity checks throughout. Small job, real stakes: <b>years of context, moved without losing the thread.</b></p>
+          <p class="meta"><span>STATUS <i>COMPLETE</i></span><span>DOMAIN <i>DATA MIGRATION</i></span><span>VOLUME <i>1,668 RECORDS</i></span></p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div>
-    <div class="footer-brand">Tech<span>Frog</span> Consulting</div>
-    <p class="footer-sub">AI-powered automation for businesses that are done paying people to do work that should run itself.</p>
+<!-- ================================================ SYS/05 — METHOD -->
+<section class="cv" id="method" aria-labelledby="method-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/05</b> METHOD</p>
+    <h2 id="method-h" data-reveal>The same sequence, every time.</h2>
+    <p class="lede" data-reveal style="margin-top:1.2rem;">Order matters. We don't build before we map, and we don't hand over before we document.</p>
+    <ol class="steps" data-reveal>
+      <li><h3>Map</h3><p>Observe how work actually moves — not how the org chart says it should. Every entry point, handoff, and drop point, written down.</p></li>
+      <li><h3>Design</h3><p>Specify the system in writing: states, owners, failure modes, escalation. If the spec can't say what happens when it breaks, it isn't done.</p></li>
+      <li><h3>Build</h3><p>Typed, tested, on boring and reliable tools. Nothing clever where dependable will do.</p></li>
+      <li><h3>Verify</h3><p>Human review gates on anything that acts. Hash-chained logs on anything that matters. The system is built to be checked.</p></li>
+      <li><h3>Document</h3><p>Runbooks, architecture notes, and training. The test: a new hire can operate it from the documentation alone.</p></li>
+      <li><h3>Maintain</h3><p>Monitoring and care after handover, so failures surface before clients notice — and fixes land before they escalate.</p></li>
+    </ol>
+    <div class="principles" data-reveal>
+      <p><span><b>If it can't be verified, it doesn't ship.</b></span></p>
+      <p><span>Boring tools. Sharp systems.</span></p>
+      <p><span>Documentation is a deliverable, not an apology.</span></p>
+      <p><span>The client owns everything — code, docs, credentials.</span></p>
+      <p><span>We say what we don't know. In writing.</span></p>
+    </div>
   </div>
-  <ul class="footer-links">
-    <li><a href="#who">Who We Serve</a></li>
-    <li><a href="#solution">How It Works</a></li>
-    <li><a href="#offer">Pricing</a></li>
-    <li><a href="#trust">Results</a></li>
-    <li><a href="#book">Book a Call</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 Tech Frog Consulting · All rights reserved · support@techfrogconsulting.com</p>
+</section>
+
+<!-- ================================================ SYS/06 — STACK -->
+<section class="cv" id="stack" aria-labelledby="stack-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/06</b> STACK</p>
+    <h2 id="stack-h" data-reveal>Chosen for durability, not fashion.</h2>
+    <div class="stack" style="margin-top:2.6rem;">
+      <div class="col" data-reveal>
+        <h3>Languages &amp; Data</h3>
+        <ul>
+          <li><b>Python</b> — systems &amp; pipelines</li>
+          <li><b>SQL</b> — SQLite · PostgreSQL</li>
+          <li><b>JavaScript</b> — interfaces</li>
+        </ul>
+      </div>
+      <div class="col" data-reveal>
+        <h3>AI Layer</h3>
+        <ul>
+          <li><b>Anthropic</b> — API, zero-retention</li>
+          <li><b>OpenAI</b> — API, zero-retention</li>
+          <li><b>Local inference</b> — on-premise</li>
+        </ul>
+      </div>
+      <div class="col" data-reveal>
+        <h3>Security &amp; Ops</h3>
+        <ul>
+          <li><b>SHA-256</b> audit chains</li>
+          <li><b>Least-privilege</b> identity · MFA</li>
+          <li><b>Linux</b> · monitored jobs · encrypted backups</li>
+        </ul>
+      </div>
+    </div>
+    <p class="stack-note" data-reveal><b>Vendor lock-in is a workflow bug.</b> Every AI integration we build can change providers without changing the process — the model is a component, not a dependency.</p>
+  </div>
+</section>
+
+<!-- ================================================ SYS/07 — INDUSTRIES -->
+<section class="cv" id="industries" aria-labelledby="industries-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/07</b> WHO IT'S FOR</p>
+    <h2 id="industries-h" data-reveal>Small firms with real stakes.</h2>
+    <div class="inds" style="margin-top:2.6rem;">
+      <article class="ind primary" data-reveal>
+        <header><h3>Law Firms</h3><span class="status">PRIMARY FOCUS</span></header>
+        <p>1–15 attorneys. Conflict-aware intake, privilege-native AI, collections, and audit trails that survive scrutiny. <b>Our founder holds the IAPP AIGP</b> — AI governance is native here, not bolted on.</p>
+      </article>
+      <article class="ind" data-reveal>
+        <header><h3>MSPs</h3><span class="status dim">FIELD-TESTED</span></header>
+        <p><b>We've operated one.</b> We know the stack, the margins, and the 2 a.m. tickets — automation for the work you resell and the work you eat.</p>
+      </article>
+      <article class="ind" data-reveal>
+        <header><h3>HVAC &amp; Field Services</h3><span class="status dim">OFFERED</span></header>
+        <p>Dispatch, quoting, follow-up, maintenance agreements. <b>The revenue is in the follow-through</b> — and the follow-through is automatable.</p>
+      </article>
+      <article class="ind" data-reveal>
+        <header><h3>Professional Services</h3><span class="status dim">OFFERED</span></header>
+        <p>Accountants, consultancies, agencies: anywhere the product is judgment and the bottleneck is process.</p>
+      </article>
+      <article class="ind" data-reveal style="grid-column:1 / -1;">
+        <header><h3>Founders &amp; Solo Operators</h3><span class="status dim">OFFERED</span></header>
+        <p>One person with the right systems outworks five without them. We build the systems — you keep the headcount at one for as long as you want to.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ SYS/08 — WORKFLOW AUDIT -->
+<section class="cv" id="audit" aria-labelledby="audit-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/08</b> THE FRONT DOOR</p>
+    <h2 id="audit-h" data-reveal>Every engagement starts the same way.</h2>
+    <div class="audit-grid" style="margin-top:2.4rem;">
+      <div data-reveal>
+        <p class="lede">A workflow audit. Fixed fee, fixed scope. We map how work actually moves through your firm and hand you a document worth keeping — whether or not you ever hire us again.</p>
+        <ul class="gets">
+          <li><span><b>Current-state map</b> of how work really flows, entry to archive.</span></li>
+          <li><span><b>Prioritized fix list</b> with realistic effort estimates.</span></li>
+          <li><span><b>Security baseline check</b> against the standard your clients expect.</span></li>
+          <li><span><b>90-day build plan</b>, sequenced and priced.</span></li>
+        </ul>
+      </div>
+      <div class="scoper" data-reveal>
+        <p class="klabel"><b>STEP 1</b> INDUSTRY</p>
+        <div class="chips" role="group" aria-label="Select your industry" id="indChips">
+          <button class="chip" type="button" aria-pressed="false" data-ind="law">Law firm</button>
+          <button class="chip" type="button" aria-pressed="false" data-ind="msp">MSP</button>
+          <button class="chip" type="button" aria-pressed="false" data-ind="hvac">HVAC / Field</button>
+          <button class="chip" type="button" aria-pressed="false" data-ind="pro">Pro services</button>
+          <button class="chip" type="button" aria-pressed="false" data-ind="founder">Founder / Solo</button>
+        </div>
+        <p class="klabel"><b>STEP 2</b> WHERE IT HURTS · PICK UP TO 3</p>
+        <div class="chips" role="group" aria-label="Select up to three problem areas" id="fricChips">
+          <button class="chip" type="button" aria-pressed="false" data-fric="docs">Repeated documents</button>
+          <button class="chip" type="button" aria-pressed="false" data-fric="intake">Intake in inboxes</button>
+          <button class="chip" type="button" aria-pressed="false" data-fric="tools">Disconnected tools</button>
+          <button class="chip" type="button" aria-pressed="false" data-fric="process">Undocumented process</button>
+          <button class="chip" type="button" aria-pressed="false" data-fric="security">Security posture</button>
+          <button class="chip" type="button" aria-pressed="false" data-fric="ai">AI without guardrails</button>
+          <button class="chip" type="button" aria-pressed="false" data-fric="visibility">No operational visibility</button>
+          <button class="chip" type="button" aria-pressed="false" data-fric="followup">Quotes &amp; collections slip</button>
+        </div>
+        <div class="term scoper-out" id="scopeOut" hidden>
+          <div class="term-bar"><i></i><i></i><i></i><em>audit — preliminary scope</em></div>
+          <pre class="term-body" id="scopeTxt" aria-live="polite"></pre>
+          <p class="scoper-actions"><a class="btn btn-ghost" id="scopeMail" href="#contact">Bring this scope to a consultation</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ SYS/09 — THE FIRM -->
+<section class="cv" id="about" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <div>
+      <p class="klabel" data-reveal><b>SYS/09</b> THE FIRM</p>
+      <h2 id="about-h" data-reveal>Small by design.</h2>
+      <p class="lede" data-reveal style="margin-top:1.2rem;">Tech Frog Consulting LLC is a systems consultancy in Austin, Texas. The firm stays deliberately small: <strong>the person who scopes your system is the person who builds it</strong> — and the person who answers when it breaks.</p>
+      <p data-reveal style="color:var(--muted); max-width:62ch;">We build for firms where the stakes are real — privilege, payroll, client trust — and where "move fast and break things" is a liability, not a slogan. The work is engineered accordingly: verified before it acts, logged when it does, documented so you own it.</p>
+    </div>
+    <div class="founder-card" data-reveal>
+      <p class="klabel"><b>FOUNDER</b></p>
+      <h3>Grayson Griffin</h3>
+      <p>Technology entrepreneur, systems architect, former MSP owner-operator, and the creator of ArgosOS.</p>
+      <p class="certline">IAPP AIGP · AWS CERTIFIED AI PRACTITIONER · MICROSOFT AZURE AI-900 · COMPTIA A+</p>
+      <p>The founder keeps an engineering notebook of his own — <a class="ulink" href="https://graysongriffin.me" rel="author">graysongriffin.me</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ SYS/10 — FAQ -->
+<section class="cv" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/10</b> QUESTIONS</p>
+    <h2 id="faq-h" data-reveal>Plain answers.</h2>
+    <div class="faq" data-reveal>
+      <details>
+        <summary>When can engagements begin? <span class="sig" aria-hidden="true">+</span></summary>
+        <p class="a"><b>New client engagements open Q4 2026.</b> Consultations and workflow-audit scheduling are being booked now for that window — early conversations get first position on the calendar.</p>
+      </details>
+      <details>
+        <summary>Will our data be used to train AI models? <span class="sig" aria-hidden="true">+</span></summary>
+        <p class="a"><b>No.</b> Cloud AI runs through zero-retention API configurations. Sidebar runs entirely on hardware in your office. Training on client data is contractually off the table.</p>
+      </details>
+      <details>
+        <summary>Do you resell software or hardware? <span class="sig" aria-hidden="true">+</span></summary>
+        <p class="a">No margins on other people's products. We specify, build, and configure — <b>you hold the licenses, the credentials, and the code.</b> Our incentive is that the system works, not that you buy more of it.</p>
+      </details>
+      <details>
+        <summary>What if we're not technical? <span class="sig" aria-hidden="true">+</span></summary>
+        <p class="a">Expected. Every system ships with documentation and training. The test we hold ourselves to: <b>a new hire should be able to run it from the runbook alone.</b></p>
+      </details>
+      <details>
+        <summary>How is AI kept from being confidently wrong? <span class="sig" aria-hidden="true">+</span></summary>
+        <p class="a">Structurally. Outputs pass typed verification and human review gates before they act, and every step lands in a hash-chained log. <b>The system is built to be checked</b> — trust comes from the architecture, not the model's tone of voice.</p>
+      </details>
+      <details>
+        <summary>What does it cost? <span class="sig" aria-hidden="true">+</span></summary>
+        <p class="a">Workflow audits are fixed-fee. Builds are fixed-scope. Ongoing care plans start at <b>$1,200 per month.</b> No hourly billing — meters change incentives, and not in your favor.</p>
+      </details>
+      <details>
+        <summary>Do you work outside Central Texas? <span class="sig" aria-hidden="true">+</span></summary>
+        <p class="a">On-site across the Austin corridor. Remote elsewhere, with the same documentation standard — the runbook doesn't care about the zip code.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ SYS/11 — START -->
+<section class="cv contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <p class="klabel" data-reveal><b>SYS/11</b> START</p>
+    <h2 id="contact-h" data-reveal>Bring us the workflow that hurts.</h2>
+    <p class="lede" data-reveal style="margin-top:1.2rem;">Send two paragraphs: what your firm does, and the process that costs you the most. We'll reply with whether we're the right fit and what an audit would cover — in writing, like everything else.</p>
+    <p data-reveal><a class="mail" href="mailto:support@techfrogconsulting.com?subject=Consultation%20request%20%E2%80%94%20Q4%202026">support@techfrogconsulting.com</a></p>
+    <div class="hero-ctas" data-reveal>
+      <a class="btn btn-primary" href="mailto:support@techfrogconsulting.com?subject=Workflow%20audit%20%E2%80%94%20Q4%202026">Schedule a workflow audit</a>
+      <a class="btn btn-ghost" href="#audit">Scope it first</a>
+    </div>
+    <p class="hero-note" data-reveal style="margin-top:1.6rem;"><span class="dot" aria-hidden="true"></span> AUSTIN, TEXAS · NEW ENGAGEMENTS OPEN Q4 2026</p>
+    <!-- CALENDAR SLOT: swap the audit button href for your Cal.com / Calendly link when live -->
+  </div>
+</section>
+
+</main>
+
+<!-- ================================================ FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="mark" aria-hidden="true"></span>
+        <span>TECH FROG</span>
+      </a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#systems">Systems</a>
+        <a href="#method">Method</a>
+        <a href="#audit">Audit</a>
+        <a href="https://graysongriffin.me" rel="author">Founder</a>
+      </nav>
+    </div>
+    <p class="foot-fine">
+      TECH FROG CONSULTING LLC · 3801 N CAPITAL OF TEXAS HWY, STE E240-3602, AUSTIN, TX 78746 · © 2026<br>
+      FOUNDED BY <a href="https://graysongriffin.me" rel="author">GRAYSON GRIFFIN</a> · THIS SITE IS ONE HTML FILE. NO FRAMEWORKS. NO TRACKERS. THAT'S THE POINT.
+    </p>
+  </div>
 </footer>
 
 <script>
-// Hamburger menu
-const hamburger = document.getElementById('hamburger');
-const mobMenu = document.getElementById('mobMenu');
-const spans = hamburger.querySelectorAll('span');
-let menuOpen = false;
-hamburger.addEventListener('click', () => {
-  menuOpen = !menuOpen;
-  mobMenu.classList.toggle('open', menuOpen);
-  if (menuOpen) {
-    spans[0].style.transform = 'rotate(45deg) translate(4px,5px)';
-    spans[1].style.opacity = '0';
-    spans[2].style.transform = 'rotate(-45deg) translate(4px,-5px)';
-  } else {
-    spans[0].style.transform = '';
-    spans[1].style.opacity = '';
-    spans[2].style.transform = '';
-  }
-});
-document.querySelectorAll('.mob-link').forEach(l => {
-  l.addEventListener('click', () => {
-    menuOpen = false;
-    mobMenu.classList.remove('open');
-    spans[0].style.transform = '';
-    spans[1].style.opacity = '';
-    spans[2].style.transform = '';
-  });
-});
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Email capture
-function handleEmail() {
-  const val = document.getElementById('emailInput').value;
-  if (val && val.includes('@')) {
-    document.getElementById('emailRow').style.display = 'none';
-    document.getElementById('emailThanks').style.display = 'block';
+  /* ---------- nav: scrolled state ---------- */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 24); };
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* ---------- nav: mobile menu ---------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var navLinks = document.getElementById('navLinks');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    navLinks.addEventListener('click', function(e){
+      if (e.target.tagName === 'A') {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
-}
-document.getElementById('emailInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') handleEmail();
-});
+
+  /* ---------- reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- nav: active section ---------- */
+  var linkMap = {};
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a){
+    linkMap[a.getAttribute('href').slice(1)] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var link = linkMap[en.target.id];
+        if (!link) return;
+        if (en.isIntersecting) {
+          Object.keys(linkMap).forEach(function(k){ linkMap[k].classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-38% 0px -55% 0px' });
+    Object.keys(linkMap).forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) spy.observe(sec);
+    });
+  }
+
+  /* ---------- hero terminal: boot sequence ---------- */
+  var boot = document.getElementById('boot');
+  if (boot && !reduce) {
+    var finalLines = boot.innerHTML.split('\n');
+    var minH = boot.offsetHeight;
+    boot.style.minHeight = minH + 'px';
+    boot.innerHTML = '';
+    var cmd = '$ techfrog --status';
+    var i = 0;
+    var typeCmd = function(){
+      i++;
+      boot.innerHTML = '<span class="cmd">' + cmd.slice(0, i) + '</span>' +
+        (i < cmd.length ? '<span class="caret"></span>' : '');
+      if (i < cmd.length) { setTimeout(typeCmd, 26 + Math.random() * 42); }
+      else { setTimeout(function(){ revealLine(1); }, 320); }
+    };
+    var revealLine = function(idx){
+      boot.innerHTML = finalLines.slice(0, idx + 1).join('\n');
+      if (idx + 1 < finalLines.length) {
+        setTimeout(function(){ revealLine(idx + 1); }, finalLines[idx].trim() === '' ? 120 : 210);
+      }
+    };
+    setTimeout(typeCmd, 520);
+  }
+
+  /* ---------- workflow audit scoper ---------- */
+  var MODULES = {
+    docs:       'M1 · DOCUMENT ASSEMBLY TRACE — where repeats originate; what a template system replaces',
+    intake:     'M2 · INTAKE + ROUTING TRACE — every entry point, response time, drop point',
+    tools:      'M3 · INTEGRATION MAP — systems inventory, data handoffs, re-entry count',
+    process:    'M4 · PROCESS CAPTURE — the undocumented steps, written down and owned',
+    security:   'M5 · SECURITY BASELINE — identity, email, endpoints, backups, policy gaps',
+    ai:         'M6 · AI READINESS — which tasks tolerate automation; which need review gates',
+    visibility: 'M7 · OPERATIONAL VISIBILITY — what a one-screen state of the firm requires',
+    followup:   'M8 · FOLLOW-THROUGH TRACE — quotes, invoices, and collections state audit'
+  };
+  var IND = {
+    law:     ['LAW FIRM',        'scoped for a small law practice — conflict checks and privilege boundaries included'],
+    msp:     ['MSP',             'scoped for an MSP — PSA/RMM stack assumed; we speak the acronyms'],
+    hvac:    ['HVAC / FIELD',    'scoped for field services — dispatch, quoting, and maintenance-agreement flow included'],
+    pro:     ['PRO SERVICES',    'scoped around the client-delivery pipeline'],
+    founder: ['FOUNDER / SOLO',  'scoped for a solo operator — maximum output per hour of attention']
+  };
+  var industry = null;
+  var frictions = [];
+  var indChips = document.getElementById('indChips');
+  var fricChips = document.getElementById('fricChips');
+  var out = document.getElementById('scopeOut');
+  var txt = document.getElementById('scopeTxt');
+  var mail = document.getElementById('scopeMail');
+
+  var renderScope = function(){
+    if (!industry && frictions.length === 0) { out.hidden = true; return; }
+    var lines = ['$ techfrog audit --scope', ''];
+    if (industry) {
+      lines.push('industry .... ' + IND[industry][0]);
+      lines.push('note ........ ' + IND[industry][1]);
+      lines.push('');
+    }
+    lines.push('modules');
+    lines.push('  M0 · CURRENT-STATE MAP — entry to archive');
+    frictions.forEach(function(f){ lines.push('  ' + MODULES[f]); });
+    lines.push('  M9 · 90-DAY BUILD PLAN — sequenced, estimated, prioritized');
+    lines.push('');
+    lines.push('fee ......... FIXED · QUOTED AT CONSULTATION');
+    var plain = lines.join('\n');
+    txt.textContent = '';
+    var first = document.createElement('span');
+    first.className = 'cmd';
+    first.textContent = lines[0];
+    txt.appendChild(first);
+    txt.appendChild(document.createTextNode('\n' + lines.slice(1).join('\n')));
+    var subj = 'Workflow audit scope' + (industry ? ' — ' + IND[industry][0] : '');
+    mail.href = 'mailto:support@techfrogconsulting.com?subject=' + encodeURIComponent(subj) +
+                '&body=' + encodeURIComponent(plain + '\n\nAbout our firm:\n');
+    out.hidden = false;
+  };
+
+  if (indChips) {
+    indChips.addEventListener('click', function(e){
+      var btn = e.target.closest('.chip'); if (!btn) return;
+      var val = btn.getAttribute('data-ind');
+      industry = (industry === val) ? null : val;
+      indChips.querySelectorAll('.chip').forEach(function(c){
+        c.setAttribute('aria-pressed', c.getAttribute('data-ind') === industry ? 'true' : 'false');
+      });
+      renderScope();
+    });
+  }
+  if (fricChips) {
+    fricChips.addEventListener('click', function(e){
+      var btn = e.target.closest('.chip'); if (!btn) return;
+      var val = btn.getAttribute('data-fric');
+      var idx = frictions.indexOf(val);
+      if (idx > -1) { frictions.splice(idx, 1); }
+      else if (frictions.length < 3) { frictions.push(val); }
+      else { return; }
+      btn.setAttribute('aria-pressed', frictions.indexOf(val) > -1 ? 'true' : 'false');
+      renderScope();
+    });
+  }
+})();
 </script>
 </body>
 </html>
