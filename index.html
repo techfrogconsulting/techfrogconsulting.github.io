@@ -242,6 +242,53 @@ section + section{ border-top:1px solid var(--line); }
 .caret{ display:inline-block; width:.55em; height:1.05em; background:var(--ph); vertical-align:-2px; animation:blink 1.1s steps(1) infinite; }
 @keyframes blink{ 50%{ opacity:0; } }
 
+/* Terminal — interactive layer (classes applied by JS; static <pre> is the no-JS fallback) */
+.term--live .term-body{
+  white-space:pre-wrap; overflow-wrap:break-word;
+  overflow-y:auto; max-height:min(430px, 58vh);
+  overscroll-behavior:contain; cursor:text;
+  transition:max-height .45s var(--ease), padding .45s var(--ease), opacity .35s var(--ease);
+}
+.term--tall .term-body{ max-height:min(660px, 74vh); }
+.term--min .term-body{ max-height:0; padding-top:0; padding-bottom:0; opacity:0; overflow-y:hidden; }
+.term--live:focus-within{
+  border-color:var(--ph-soft);
+  box-shadow:0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(242,239,233,.04),
+             0 0 0 1px var(--ph-glow), 0 0 24px var(--ph-glow);
+}
+.t-zone{ display:block; }
+.t-line{ display:block; }
+.t-line:empty::before{ content:"\00a0"; }
+.trow{
+  display:block; width:100%; text-align:left;
+  background:none; border:0; padding:0; margin:0;
+  font:inherit; line-height:inherit; letter-spacing:inherit;
+  color:inherit; white-space:inherit; cursor:pointer;
+  transition:color .2s;
+}
+.t-hint, .t-dim{ color:var(--dim); }
+.trow:hover, .trow:focus-visible{ color:var(--paper); }
+.trow .val, .trow .ok{ pointer-events:none; }
+.t-prompt{ display:block; position:relative; cursor:text; }
+.t-echo{ color:var(--paper); }
+.t-input{
+  position:absolute; inset:0; width:100%; height:100%;
+  opacity:0; border:0; padding:0; margin:0; background:transparent;
+  color:transparent; caret-color:transparent;
+  font-size:16px; /* ≥16px keeps mobile browsers from zooming on focus; field is invisible */
+  -webkit-appearance:none; appearance:none;
+}
+.t-input:focus, .t-input:focus-visible{ outline:none; }
+.tdot{
+  width:9px; height:9px; border-radius:50%; background:var(--line-2);
+  border:0; padding:0; flex:none; cursor:pointer; position:relative;
+  transition:background .25s, box-shadow .25s;
+}
+.tdot::after{ content:""; position:absolute; inset:-7px; border-radius:50%; }
+.tdot:hover, .tdot:focus-visible{ background:var(--ph-soft); }
+.tdot[aria-pressed="true"]{ background:var(--ph); box-shadow:0 0 8px var(--ph-soft); }
+#argos, #sidebar, #audit-chain{ scroll-margin-top:84px; }
+
 /* Built-for strip */
 .strip{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:1.05rem 0; }
 .strip .wrap{ display:flex; flex-wrap:wrap; gap:.4em 1.8em; align-items:baseline;
@@ -659,7 +706,7 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
     <p class="lede" data-reveal style="margin-top:1.2rem;">Everything on this page exists. Status labels are accurate as of this writing — and we'd rather show you a working audit log than an adjective.</p>
 
     <!-- ArgosOS -->
-    <article class="flagship" data-reveal>
+    <article class="flagship" id="argos" data-reveal>
       <div class="body">
         <p class="sysline"><b>ARGOS OS</b> · V3 · INTERNAL PRODUCTION</p>
         <h3>ArgosOS</h3>
@@ -674,7 +721,7 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
         <p class="specrow"><b>STACK</b> PYTHON · SQLITE · STREAMLIT <b>AUDIT</b> SHA-256 CHAIN <b>STATUS</b> V3</p>
       </div>
       <div class="fig-col">
-        <figure class="fig" data-reveal>
+        <figure class="fig" id="audit-chain" data-reveal>
           <figcaption>FIG. 01 — AUDIT CHAIN · SCHEMATIC</figcaption>
           <div class="panel">
             <div class="chain">
@@ -694,7 +741,7 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
     </article>
 
     <!-- Sidebar -->
-    <article class="flagship rev" data-reveal>
+    <article class="flagship rev" id="sidebar" data-reveal>
       <div class="body">
         <p class="sysline"><b>SIDEBAR</b> · V0.1.0 · PRE-RELEASE</p>
         <h3>Sidebar</h3>
@@ -1120,30 +1167,404 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
     });
   }
 
-  /* ---------- hero terminal: boot sequence ---------- */
-  var boot = document.getElementById('boot');
-  if (boot && !reduce) {
-    var finalLines = boot.innerHTML.split('\n');
-    var minH = boot.offsetHeight;
-    boot.style.minHeight = minH + 'px';
-    boot.innerHTML = '';
-    var cmd = '$ techfrog --status';
-    var i = 0;
-    var typeCmd = function(){
-      i++;
-      boot.innerHTML = '<span class="cmd">' + cmd.slice(0, i) + '</span>' +
-        (i < cmd.length ? '<span class="caret"></span>' : '');
-      if (i < cmd.length) { setTimeout(typeCmd, 26 + Math.random() * 42); }
-      else { setTimeout(function(){ revealLine(1); }, 320); }
+  /* ---------- hero terminal: interactive session ---------- */
+  (function(){
+    var term  = document.querySelector('.hero .term');
+    var tbody = document.getElementById('boot');
+    if (!term || !tbody) return;
+
+    var TYPE_CMD = '$ techfrog --status';
+    var ROWS = [
+      { label:'argos ............ ', val:'v3 · internal production', ok:false, go:'#argos',
+        aria:'ArgosOS — v3, internal production. View the system record.' },
+      { label:'sidebar .......... ', val:'v0.1.0 · packaged', ok:false, go:'#sidebar',
+        aria:'Sidebar — v0.1.0, packaged. View the system record.' },
+      { label:'audit chain ...... ', val:'verified', ok:true, go:'#audit-chain',
+        aria:'Audit chain — verified. View the audit chain schematic.' },
+      { label:'engagements ...... ', val:'open · Q4 2026', ok:false, go:'#audit',
+        aria:'Engagements — open, Q4 2026. Go to the workflow audit.' }
+    ];
+    var HELP = [
+      ['systems',    'examine the systems'],
+      ['services',   'what we build'],
+      ['industries', 'who we work with'],
+      ['approach',   'how we work'],
+      ['contact',    'request a consultation'],
+      ['clear',      'clear terminal']
+    ];
+    var SERVICES = [
+      'workflow engineering', 'applied ai · review-gated', 'automation systems',
+      'security posture', 'custom software', 'research systems (osint)'
+    ];
+    var INDS = [
+      ['law firms ........ ', 'primary focus'],
+      ['msps ............. ', 'field-tested'],
+      ['hvac & field ..... ', 'offered'],
+      ['pro services ..... ', 'offered'],
+      ['founders / solo .. ', 'offered']
+    ];
+
+    var gen = 0, timers = [], hist = [], histIdx = 0;
+    var startedOnce = false, usedOnce = false;
+
+    var later = function(fn, ms){
+      var g = gen;
+      timers.push(setTimeout(function(){ if (g === gen) fn(); }, ms));
     };
-    var revealLine = function(idx){
-      boot.innerHTML = finalLines.slice(0, idx + 1).join('\n');
-      if (idx + 1 < finalLines.length) {
-        setTimeout(function(){ revealLine(idx + 1); }, finalLines[idx].trim() === '' ? 120 : 210);
+    var cancelTimers = function(){ timers.forEach(clearTimeout); timers = []; };
+
+    var el = function(tag, cls, text){
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    };
+    var line = function(zone, text, cls){
+      var s = el('span', 't-line' + (cls ? ' ' + cls : ''), text || '');
+      zone.appendChild(s);
+      return s;
+    };
+    /* constant markup only — never user input */
+    var lineHTML = function(zone, html){
+      var s = el('span', 't-line');
+      s.innerHTML = html;
+      zone.appendChild(s);
+      return s;
+    };
+    var pad = function(s, n){ while (s.length < n) s += ' '; return s; };
+    var rowBtn = function(r){
+      var b = el('button', 'trow');
+      b.type = 'button';
+      b.setAttribute('data-go', r.go);
+      b.setAttribute('aria-label', r.aria);
+      b.appendChild(document.createTextNode('  ' + r.label));
+      b.appendChild(el('span', 'val', r.val));
+      if (r.ok) {
+        b.appendChild(document.createTextNode(' '));
+        b.appendChild(el('span', 'ok', '✓'));
+      }
+      return b;
+    };
+    var goBtn = function(zone, text, target){
+      var b = el('button', 'trow t-dim');
+      b.type = 'button';
+      b.setAttribute('data-go', target);
+      b.innerHTML = '  <span class="val">→</span> ' + text;
+      zone.appendChild(b);
+      return b;
+    };
+    var toBottom = function(){ tbody.scrollTop = tbody.scrollHeight; };
+    var jumpTo = function(sel){
+      var dest = document.querySelector(sel);
+      if (!dest) return;
+      if (document.activeElement === inputEl) inputEl.blur();
+      dest.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    };
+
+    /* persistent structure — the static <pre> content becomes the no-JS fallback */
+    var lh = parseFloat(getComputedStyle(tbody).lineHeight) || 25;
+    tbody.style.minHeight = (tbody.offsetHeight + 2 * lh) + 'px';
+    tbody.textContent = '';
+
+    var bootZone = el('span', 't-zone');
+    var outZone  = el('span', 't-zone');
+    outZone.setAttribute('aria-live', 'polite');
+    var hint     = el('span', 't-line t-hint', 'type "help" or tap a system');
+    var promptEl = el('label', 't-prompt');
+    var echoEl   = el('span', 't-echo');
+    var caretEl  = el('span', 'caret');
+    caretEl.setAttribute('aria-hidden', 'true');
+    var inputEl  = document.createElement('input');
+    inputEl.type = 'text';
+    inputEl.className = 't-input';
+    inputEl.setAttribute('aria-label', 'Terminal command input. Type help for available commands.');
+    inputEl.setAttribute('autocomplete', 'off');
+    inputEl.setAttribute('autocapitalize', 'none');
+    inputEl.setAttribute('autocorrect', 'off');
+    inputEl.setAttribute('spellcheck', 'false');
+    inputEl.setAttribute('enterkeyhint', 'go');
+    promptEl.appendChild(el('span', 'cmd', '$ '));
+    promptEl.appendChild(echoEl);
+    promptEl.appendChild(caretEl);
+    promptEl.appendChild(inputEl);
+    hint.hidden = true;
+    promptEl.hidden = true;
+    tbody.appendChild(bootZone);
+    tbody.appendChild(outZone);
+    tbody.appendChild(hint);
+    tbody.appendChild(promptEl);
+    term.classList.add('term--live');
+
+    var showPrompt = function(withHint){
+      if (withHint) hint.hidden = false;
+      promptEl.hidden = false;
+      toBottom();
+    };
+
+    var boot = function(){
+      gen++; cancelTimers();
+      bootZone.textContent = '';
+      outZone.textContent = '';
+      hint.hidden = true;
+      promptEl.hidden = true;
+
+      if (reduce) {
+        line(bootZone, TYPE_CMD, 'cmd');
+        line(bootZone, '');
+        ROWS.forEach(function(r){ bootZone.appendChild(rowBtn(r)); });
+        line(bootZone, '');
+        line(bootZone, 'ready.');
+        showPrompt(!usedOnce);
+        return;
+      }
+
+      var cmdSpan = el('span', 'cmd');
+      var tmpCaret = el('span', 'caret');
+      tmpCaret.setAttribute('aria-hidden', 'true');
+      var cmdLine = el('span', 't-line');
+      cmdLine.appendChild(cmdSpan);
+      cmdLine.appendChild(tmpCaret);
+      bootZone.appendChild(cmdLine);
+
+      var i = 0;
+      var typeStep = function(){
+        i++;
+        cmdSpan.textContent = TYPE_CMD.slice(0, i);
+        if (i < TYPE_CMD.length) { later(typeStep, 26 + Math.random() * 42); }
+        else {
+          later(function(){
+            cmdLine.removeChild(tmpCaret);
+            line(bootZone, '');
+            revealRow(0);
+          }, 320);
+        }
+      };
+      var revealRow = function(idx){
+        if (idx >= ROWS.length) {
+          later(function(){
+            line(bootZone, '');
+            line(bootZone, 'ready.');
+            later(function(){ showPrompt(!usedOnce); }, 260);
+          }, 140);
+          return;
+        }
+        var r = ROWS[idx];
+        if (r.ok) {
+          var probe = el('span', 't-line');
+          probe.appendChild(document.createTextNode('  ' + r.label));
+          probe.appendChild(el('span', 't-dim', 'checking…'));
+          bootZone.appendChild(probe);
+          later(function(){
+            bootZone.replaceChild(rowBtn(r), probe);
+            later(function(){ revealRow(idx + 1); }, 170);
+          }, 380);
+        } else {
+          bootZone.appendChild(rowBtn(r));
+          later(function(){ revealRow(idx + 1); }, 170);
+        }
+      };
+      later(typeStep, 380);
+    };
+
+    var COMMANDS = {
+      'help': function(){
+        line(outZone, 'available commands:');
+        line(outZone, '');
+        HELP.forEach(function(c){
+          var b = el('button', 'trow', '  ' + pad(c[0], 14) + c[1]);
+          b.type = 'button';
+          b.setAttribute('data-run', c[0]);
+          b.setAttribute('aria-label', 'Run command: ' + c[0]);
+          outZone.appendChild(b);
+        });
+        line(outZone, '');
+      },
+      'systems': function(){
+        line(outZone, 'systems on record:');
+        line(outZone, '');
+        ROWS.slice(0, 3).forEach(function(r){ outZone.appendChild(rowBtn(r)); });
+        line(outZone, '');
+        goBtn(outZone, 'view all · sys/03', '#systems');
+        line(outZone, '');
+      },
+      'services': function(){
+        line(outZone, 'services:');
+        line(outZone, '');
+        SERVICES.forEach(function(s){ line(outZone, '  ' + s); });
+        line(outZone, '');
+        line(outZone, 'fixed scope · documented · client-owned');
+        goBtn(outZone, 'sys/02 · services', '#services');
+        line(outZone, '');
+      },
+      'industries': function(){
+        line(outZone, 'industries:');
+        line(outZone, '');
+        INDS.forEach(function(p){
+          var s = el('span', 't-line');
+          s.appendChild(document.createTextNode('  ' + p[0]));
+          s.appendChild(el('span', 'val', p[1]));
+          outZone.appendChild(s);
+        });
+        line(outZone, '');
+        goBtn(outZone, "sys/07 · who it's for", '#industries');
+        line(outZone, '');
+      },
+      'approach': function(){
+        line(outZone, 'approach:');
+        line(outZone, '');
+        lineHTML(outZone, '  map <span class="val">→</span> design <span class="val">→</span> build <span class="val">→</span> verify');
+        lineHTML(outZone, '      <span class="val">→</span> document <span class="val">→</span> maintain');
+        line(outZone, '');
+        line(outZone, "  if it can't be verified,");
+        line(outZone, "  it doesn't ship.");
+        line(outZone, '');
+        goBtn(outZone, 'sys/05 · method', '#method');
+        line(outZone, '');
+      },
+      'contact': function(){
+        lineHTML(outZone, '<span class="val">→</span> request a consultation');
+        line(outZone, '');
+        later(function(){ jumpTo('#contact'); }, reduce ? 0 : 280);
+      },
+      'clear': function(){
+        bootZone.textContent = '';
+        outZone.textContent = '';
+        hint.hidden = true;
+      },
+      'whoami': function(){
+        line(outZone, 'potential_client');
+        line(outZone, '');
+        line(outZone, '  access level ..... limited');
+        line(outZone, '  recommendation ... request a consultation');
+        line(outZone, '');
+      },
+      'sudo automate everything': function(){
+        line(outZone, 'permission denied.');
+        line(outZone, '');
+        line(outZone, 'good systems require judgment.');
+        line(outZone, '');
       }
     };
-    setTimeout(typeCmd, 520);
-  }
+
+    var execute = function(raw){
+      var shown = String(raw).trim();
+      var key = shown.toLowerCase().replace(/\s+/g, ' ');
+      hint.hidden = true;
+      line(outZone, '$ ' + shown, 'cmd');
+      if (!key) { toBottom(); return; }
+      usedOnce = true;
+      if (hist[hist.length - 1] !== shown) hist.push(shown);
+      histIdx = hist.length;
+      if (COMMANDS.hasOwnProperty(key)) {
+        COMMANDS[key]();
+      } else if (key === 'sudo' || key.indexOf('sudo ') === 0) {
+        line(outZone, 'permission denied.');
+        line(outZone, '');
+      } else {
+        line(outZone, 'command not found.');
+        line(outZone, 'type "help" for available commands.');
+        line(outZone, '');
+      }
+      toBottom();
+    };
+
+    inputEl.addEventListener('input', function(){ echoEl.textContent = inputEl.value; });
+    inputEl.addEventListener('keydown', function(ev){
+      if (ev.key === 'Enter' || ev.keyCode === 13) {
+        ev.preventDefault();
+        var v = inputEl.value;
+        inputEl.value = '';
+        echoEl.textContent = '';
+        execute(v);
+      } else if (ev.key === 'ArrowUp') {
+        if (!hist.length) return;
+        ev.preventDefault();
+        histIdx = Math.max(0, histIdx - 1);
+        inputEl.value = hist[histIdx];
+        echoEl.textContent = inputEl.value;
+      } else if (ev.key === 'ArrowDown') {
+        if (!hist.length) return;
+        ev.preventDefault();
+        histIdx = Math.min(hist.length, histIdx + 1);
+        inputEl.value = histIdx === hist.length ? '' : hist[histIdx];
+        echoEl.textContent = inputEl.value;
+      }
+    });
+    inputEl.addEventListener('focus', function(){
+      requestAnimationFrame(function(){
+        promptEl.scrollIntoView({ block: 'nearest' });
+      });
+    });
+
+    /* one delegated handler: rows navigate, help entries run, empty space focuses */
+    tbody.addEventListener('click', function(e){
+      var t = e.target.closest('.trow');
+      if (t) {
+        var run = t.getAttribute('data-run');
+        if (run) { execute(run); return; }
+        var go = t.getAttribute('data-go');
+        if (go) jumpTo(go);
+        return;
+      }
+      if (!promptEl.hidden && !e.target.closest('.t-prompt')) {
+        inputEl.focus({ preventScroll: true });
+      }
+    });
+
+    /* window controls — same 9px dots, now functional */
+    var bar = term.querySelector('.term-bar');
+    if (bar) {
+      var iDots = bar.querySelectorAll('i');
+      if (iDots.length === 3) {
+        var mkDot = function(labelText, toggles){
+          var b = el('button', 'tdot');
+          b.type = 'button';
+          b.setAttribute('aria-label', labelText);
+          if (toggles) b.setAttribute('aria-pressed', 'false');
+          return b;
+        };
+        var dMin = mkDot('Minimize terminal', true);
+        var dExp = mkDot('Expand terminal', true);
+        var dRst = mkDot('Restart terminal session', false);
+        bar.replaceChild(dMin, iDots[0]);
+        bar.replaceChild(dExp, iDots[1]);
+        bar.replaceChild(dRst, iDots[2]);
+        dMin.addEventListener('click', function(){
+          var on = term.classList.toggle('term--min');
+          dMin.setAttribute('aria-pressed', on ? 'true' : 'false');
+          if (on) inputEl.blur();
+        });
+        dExp.addEventListener('click', function(){
+          var on = term.classList.toggle('term--tall');
+          dExp.setAttribute('aria-pressed', on ? 'true' : 'false');
+          toBottom();
+        });
+        dRst.addEventListener('click', function(){
+          term.classList.remove('term--min');
+          dMin.setAttribute('aria-pressed', 'false');
+          hist = []; histIdx = 0;
+          boot();
+        });
+      }
+    }
+
+    /* boot when the terminal actually enters view (hero on desktop, below fold on phones) */
+    var kickoff = function(){
+      if (startedOnce) return;
+      startedOnce = true;
+      boot();
+    };
+    if ('IntersectionObserver' in window) {
+      var bootIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting) { bootIO.disconnect(); kickoff(); }
+        });
+      }, { threshold: 0.35 });
+      bootIO.observe(term);
+    } else {
+      setTimeout(kickoff, 420);
+    }
+  })();
 
   /* ---------- workflow audit scoper ---------- */
   var MODULES = {
