@@ -643,6 +643,43 @@ section + section{ border-top:1px solid var(--line); }
 .scoper-actions{ display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; }
 .scoper-actions .copy-btn{ margin-left:0; }
 
+/* ---------- Audit-panel primary CTA ("Bring this scope to a consultation")
+   Layered on top of .btn. Warm-cream (paper) background with a defined
+   dark border and heavier weight than the base .btn-primary. Meets the
+   48px minimum touch target. Hover effects are gated behind
+   (hover: hover) and (pointer: fine) so tapping on a phone doesn't leave
+   a lingering visual state.
+   Copy Scope remains visually secondary via its unchanged .copy-btn class. */
+.btn-cta{
+  background:var(--paper);
+  color:var(--bg);
+  border-color:var(--bg);
+  min-height:48px;
+  padding:1.15em 1.9em;
+  font-weight:600;
+  letter-spacing:.12em;
+}
+.btn-cta:focus-visible{
+  transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(0,0,0,.4);
+}
+.btn-cta:active{
+  transform:translateY(0);
+  box-shadow:0 3px 10px rgba(0,0,0,.35);
+}
+@media (hover: hover) and (pointer: fine){
+  .btn-cta:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 20px rgba(0,0,0,.4);
+  }
+}
+/* Narrow-mobile stack: full-width CTA above, Copy Scope beneath, breathing room. */
+@media (max-width: 560px){
+  .scoper-actions{ flex-direction:column; align-items:stretch; gap:1rem; }
+  .scoper-actions .btn-cta{ width:100%; justify-content:center; }
+  .scoper-actions .copy-btn{ align-self:flex-start; }
+}
+
 /* ---------- Back-to-top ---------- */
 .to-top{
   position:fixed; right:clamp(16px, 3vw, 28px); bottom:clamp(18px, 3vw, 28px);
@@ -1172,7 +1209,7 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
           <div class="term-bar"><i></i><i></i><i></i><em>audit — preliminary scope</em></div>
           <pre class="term-body" id="scopeTxt" aria-live="polite"></pre>
           <div class="scoper-actions">
-            <a class="btn btn-ghost" id="scopeMail" href="#contact">Bring this scope to a consultation</a>
+            <a class="btn btn-cta" id="scopeMail" href="#contact">Bring this scope to a consultation</a>
             <button class="copy-btn" type="button" data-copy-source="#scopeTxt" data-copy-label="scope" aria-label="Copy this scope to clipboard">
               <svg class="copy-icon" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="5" y="5" width="9" height="9" rx="1.4"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"/></svg>
               <span class="copy-label">Copy scope</span>
