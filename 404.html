@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — Signal not found · Tech Frog Consulting</title>
+<meta name="description" content="That page isn't part of techfrogconsulting.com. Head back to the top-level site or report a broken link.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a0c0b">
+<link rel="canonical" href="https://techfrogconsulting.com/">
+<link rel="icon" type="image/png" sizes="128x128" href="/favicon.png">
+<link rel="shortcut icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:      #0a0c0b;
+  --bg-2:    #0e1110;
+  --line:    rgba(242,239,233,.08);
+  --line-2:  rgba(242,239,233,.16);
+  --paper:   #f2efe9;
+  --ink:     #ddd9d0;
+  --muted:   #9aa39d;
+  --dim:     #6b746e;
+  --ph:      #35e28b;
+  --ph-soft: rgba(53,226,139,.32);
+  --ph-glow: rgba(53,226,139,.10);
+  --serif:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:    'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:    'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --ease:    cubic-bezier(.22,.61,.2,1);
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html, body{ margin:0; }
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--sans); font-size:16.5px; line-height:1.7;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background-image:
+    radial-gradient(1100px 520px at 78% -8%, var(--ph-glow), transparent 62%),
+    linear-gradient(rgba(242,239,233,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,239,233,.022) 1px, transparent 1px);
+  background-size:auto, 56px 56px, 56px 56px;
+  background-attachment:fixed;
+}
+::selection{ background:var(--ph); color:var(--bg); }
+:focus-visible{ outline:2px solid var(--ph); outline-offset:3px; border-radius:4px; }
+
+.wrap{ max-width:660px; padding:clamp(28px, 5vw, 48px); }
+.klabel{
+  font-family:var(--mono); font-size:.68rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--dim);
+  display:flex; align-items:center; gap:.7em; margin:0 0 1.6rem;
+}
+.klabel::after{ content:""; height:1px; flex:1 0 44px; background:var(--line-2); }
+.klabel b{ color:var(--ph); font-weight:500; }
+
+h1{
+  font-family:var(--serif); font-weight:500; color:var(--paper);
+  font-size:clamp(2.4rem, 6vw, 3.8rem); line-height:1.06; letter-spacing:-.01em;
+  margin:0 0 1.2rem;
+}
+h1 em{ font-style:italic; color:var(--paper); }
+p.lede{
+  font-size:clamp(1rem, 1.6vw, 1.15rem); color:var(--muted);
+  max-width:58ch; margin:0 0 2rem;
+}
+p.lede strong{ color:var(--paper); font-weight:500; }
+
+.actions{ display:flex; flex-wrap:wrap; gap:.9rem; margin-bottom:2.6rem; }
+.btn{
+  display:inline-flex; align-items:center; gap:.55em;
+  font-family:var(--mono); font-size:.78rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:.95em 1.6em; border-radius:8px; cursor:pointer;
+  border:1px solid transparent; text-decoration:none;
+  transition:transform .25s var(--ease), background .25s, border-color .25s, box-shadow .25s;
+}
+.btn-primary{ background:var(--paper); color:var(--bg); }
+.btn-primary:hover, .btn-primary:focus-visible{
+  transform:translateY(-1px); box-shadow:0 6px 24px rgba(0,0,0,.45);
+}
+.btn-ghost{ border-color:var(--line-2); color:var(--paper); background:transparent; }
+.btn-ghost:hover, .btn-ghost:focus-visible{
+  border-color:var(--ph-soft); box-shadow:0 0 0 1px var(--ph-glow), 0 0 24px var(--ph-glow);
+}
+
+.jump{
+  padding-top:1.4rem; border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--dim); line-height:2;
+}
+.jump a{
+  color:var(--muted); text-decoration:none;
+  border-bottom:1px solid var(--line-2);
+  transition:color .2s, border-color .2s;
+}
+.jump a:hover, .jump a:focus-visible{ color:var(--paper); border-color:var(--ph); }
+.jump .sep{ color:var(--line-2); margin:0 .5em; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001s !important;
+    transition-duration:.001s !important;
+  }
+}
+
+@media print{
+  html, body{
+    background:#fff !important; color:#000 !important;
+    background-image:none !important;
+  }
+  .actions, .jump{ display:none !important; }
+  h1, p.lede{ color:#000 !important; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="klabel"><b>ERR/404</b> ROUTE NOT FOUND</p>
+  <h1>The signal is here.<br>The <em>address</em> isn't.</h1>
+  <p class="lede">That URL doesn't map to anything we've published. The site itself is intact — you've just landed on a page that isn't part of it. <strong>Head back to the top-level system</strong>, or send a note if you were following a link that ought to exist.</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="/">Return home</a>
+    <a class="btn btn-ghost" href="mailto:support@techfrogconsulting.com?subject=Broken%20link%20on%20techfrogconsulting.com">Report a broken link</a>
+  </div>
+  <p class="jump">
+    OR JUMP DIRECTLY —
+    <a href="/#services">SERVICES</a><span class="sep">·</span>
+    <a href="/#systems">SYSTEMS</a><span class="sep">·</span>
+    <a href="/#method">METHOD</a><span class="sep">·</span>
+    <a href="/#audit">AUDIT</a><span class="sep">·</span>
+    <a href="/#contact">CONTACT</a>
+  </p>
+</main>
+</body>
+</html>

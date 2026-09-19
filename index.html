@@ -543,6 +543,119 @@ section + section{ border-top:1px solid var(--line); }
   .chain-row{ opacity:1; transform:none; }
 }
 </style>
+<style>
+/* ================================================================
+   PHASE 1 — utility layer
+   Copy-to-clipboard controls, back-to-top chevron, print stylesheet,
+   screen-reader-only live region. No visual identity changes.
+   ================================================================ */
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* ---------- Copy-to-clipboard buttons ---------- */
+.copy-btn{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--mono); font-size:.62rem; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  background:transparent; color:var(--muted);
+  border:1px solid var(--line-2); border-radius:6px;
+  padding:.5em .85em; margin-left:.6em; cursor:pointer;
+  vertical-align:middle;
+  transition:color .2s, border-color .2s, background .2s, box-shadow .2s;
+}
+.copy-btn:hover, .copy-btn:focus-visible{
+  color:var(--paper); border-color:var(--ph-soft);
+  box-shadow:0 0 0 1px var(--ph-glow);
+}
+.copy-btn[data-state="copied"]{ color:var(--ph); border-color:var(--ph); }
+.copy-btn[data-state="failed"]{ color:#ff8ea3; border-color:#ff8ea3; }
+.copy-btn .copy-icon{ width:12px; height:12px; flex:none; }
+
+/* Give the scoper action row proper alignment with a sibling button */
+.scoper-actions{ display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; }
+.scoper-actions .copy-btn{ margin-left:0; }
+
+/* ---------- Back-to-top ---------- */
+.to-top{
+  position:fixed; right:clamp(16px, 3vw, 28px); bottom:clamp(18px, 3vw, 28px);
+  width:40px; height:40px; display:flex; align-items:center; justify-content:center;
+  background:rgba(14,17,16,.78);
+  backdrop-filter:blur(10px) saturate(1.1);
+  -webkit-backdrop-filter:blur(10px) saturate(1.1);
+  color:var(--paper); border:1px solid var(--line-2); border-radius:8px;
+  cursor:pointer; z-index:90;
+  opacity:0; transform:translateY(6px); pointer-events:none;
+  transition:opacity .3s var(--ease), transform .3s var(--ease),
+             border-color .25s, box-shadow .25s, color .25s;
+}
+.to-top.visible{ opacity:1; transform:none; pointer-events:auto; }
+.to-top:hover, .to-top:focus-visible{
+  color:var(--ph); border-color:var(--ph-soft);
+  box-shadow:0 0 0 1px var(--ph-glow), 0 8px 24px rgba(0,0,0,.4);
+}
+.to-top svg{ width:16px; height:16px; }
+
+@media (prefers-reduced-motion: reduce){
+  .to-top{ transition:opacity .001s, transform .001s; transform:none; }
+}
+
+/* ---------- Print stylesheet ---------- */
+@media print{
+  html, body{
+    background:#fff !important; color:#000 !important;
+    background-image:none !important;
+  }
+  body{ font-size:11pt; line-height:1.5; }
+  /* Interactive chrome and decoration that has no place on paper */
+  .nav, .to-top, .copy-btn, .skip, .menu-btn,
+  .hero .term, .scoper, .caret, .dot{
+    display:none !important;
+  }
+  section{ padding:1.2rem 0 !important; break-inside:avoid; }
+  section + section{ border-top:1px solid #999 !important; }
+  .hero{ padding-top:1.2rem !important; }
+  /* Collapse two-column grids where one column is now empty on paper */
+  .hero-grid, .audit-grid{ grid-template-columns:1fr !important; }
+  .strip{ border-color:#999 !important; color:#333 !important; }
+  .strip b{ color:#000 !important; }
+  .strip i{ color:#000 !important; }
+  /* Reveal any content awaiting scroll */
+  [data-reveal]{ opacity:1 !important; transform:none !important; }
+  .chain-row{ opacity:1 !important; transform:none !important; }
+  /* Force-open every disclosure so the printed page carries the full FAQ */
+  details{ display:block !important; }
+  details > summary{ list-style:none; }
+  details > summary::-webkit-details-marker{ display:none; }
+  details:not([open]) > *:not(summary){ display:block !important; }
+  .faq summary .sig{ display:none !important; }
+  /* Print external URLs after their anchor text; leave internal anchors and mailto alone */
+  a[href^="http"]::after{
+    content:" (" attr(href) ")";
+    font-family:var(--mono); font-size:.85em; color:#333;
+    word-break:break-all;
+  }
+  h1, h2, h3, h4{ break-after:avoid; page-break-after:avoid; color:#000 !important; }
+  p, li{ color:#111 !important; }
+  b, strong{ color:#000 !important; }
+  .klabel, .klabel b, .sysline, .sysline b,
+  .card .deliv, .card .deliv b, .certline,
+  .foot-fine, .foot-fine a, .foot-links a,
+  .status, .status.dim, .specrow, .specrow b,
+  .meta, .meta i, .gets li::before, .caps li::before,
+  .principles p::before, .swap .arr{
+    color:#111 !important;
+  }
+  img{ max-width:100% !important; }
+  .card, .sheet, .note, .ind, .stack .col, .founder-card, .principles,
+  .scoper, .flagship, .fig .panel{
+    background:#fff !important; border-color:#999 !important; box-shadow:none !important;
+    break-inside:avoid;
+  }
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -993,7 +1106,13 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
         <div class="term scoper-out" id="scopeOut" hidden>
           <div class="term-bar"><i></i><i></i><i></i><em>audit — preliminary scope</em></div>
           <pre class="term-body" id="scopeTxt" aria-live="polite"></pre>
-          <p class="scoper-actions"><a class="btn btn-ghost" id="scopeMail" href="#contact">Bring this scope to a consultation</a></p>
+          <div class="scoper-actions">
+            <a class="btn btn-ghost" id="scopeMail" href="#contact">Bring this scope to a consultation</a>
+            <button class="copy-btn" type="button" data-copy-source="#scopeTxt" data-copy-label="scope" aria-label="Copy this scope to clipboard">
+              <svg class="copy-icon" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="5" y="5" width="9" height="9" rx="1.4"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"/></svg>
+              <span class="copy-label">Copy scope</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1063,7 +1182,13 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
     <p class="klabel" data-reveal><b>SYS/11</b> START</p>
     <h2 id="contact-h" data-reveal>Bring us the workflow that hurts.</h2>
     <p class="lede" data-reveal style="margin-top:1.2rem;">Send two paragraphs: what your firm does, and the process that costs you the most. We'll reply with whether we're the right fit and what an audit would cover — in writing, like everything else.</p>
-    <p data-reveal><a class="mail" href="mailto:support@techfrogconsulting.com?subject=Consultation%20request%20%E2%80%94%20Q4%202026">support@techfrogconsulting.com</a></p>
+    <p data-reveal>
+      <a class="mail" href="mailto:support@techfrogconsulting.com?subject=Consultation%20request%20%E2%80%94%20Q4%202026">support@techfrogconsulting.com</a>
+      <button class="copy-btn" type="button" data-copy-text="support@techfrogconsulting.com" data-copy-label="email address" aria-label="Copy support email address to clipboard">
+        <svg class="copy-icon" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="5" y="5" width="9" height="9" rx="1.4"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"/></svg>
+        <span class="copy-label">Copy</span>
+      </button>
+    </p>
     <div class="hero-ctas" data-reveal>
       <a class="btn btn-primary" href="mailto:support@techfrogconsulting.com?subject=Workflow%20audit%20%E2%80%94%20Q4%202026">Schedule a workflow audit</a>
       <a class="btn btn-ghost" href="#audit">Scope it first</a>
@@ -1097,6 +1222,16 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
     </p>
   </div>
 </footer>
+
+<!-- Screen-reader live region for copy-button feedback -->
+<div id="a11y-announce" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Back-to-top control: hidden until scrolled ~1.5 viewports -->
+<button id="toTop" class="to-top" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 15 12 9 18 15"/>
+  </svg>
+</button>
 
 <script>
 (function(){
@@ -1635,6 +1770,234 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
       btn.setAttribute('aria-pressed', frictions.indexOf(val) > -1 ? 'true' : 'false');
       renderScope();
     });
+  }
+})();
+</script>
+
+<script>
+/* ================================================================
+   PHASE 1 — isolated behavior layer
+   UTM capture (session-only, whitelisted), clipboard controls,
+   back-to-top. No dependencies on the earlier script.
+   ================================================================ */
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* -------------------------------------------------- UTM CAPTURE */
+  var UTM_KEYS   = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var UTM_LABELS = { utm_source:'source', utm_medium:'medium', utm_campaign:'campaign', utm_content:'content', utm_term:'term' };
+  var STORAGE_KEY = 'tfc.utm.v1';
+  var utm = null;
+
+  function sanitize(v){
+    if (v == null) return '';
+    return String(v).replace(/[\u0000-\u001F\u007F]/g, '').slice(0, 120).trim();
+  }
+
+  try {
+    var params = new URLSearchParams(window.location.search || '');
+    var incoming = {};
+    var found = false;
+    UTM_KEYS.forEach(function(k){
+      if (params.has(k)) {
+        var v = sanitize(params.get(k));
+        if (v) { incoming[k] = v; found = true; }
+      }
+    });
+    if (found) {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(incoming));
+      utm = incoming;
+    } else {
+      var stored = sessionStorage.getItem(STORAGE_KEY);
+      if (stored) utm = JSON.parse(stored);
+    }
+  } catch (e) {
+    utm = null;
+  }
+
+  function utmTrailer(){
+    if (!utm) return '';
+    var body = [];
+    UTM_KEYS.forEach(function(k){
+      if (utm[k]) body.push('  ' + UTM_LABELS[k] + ': ' + utm[k]);
+    });
+    if (!body.length) return '';
+    return '\n\n---\nReferral:\n' + body.join('\n');
+  }
+
+  function hasTrailer(href){
+    /* The trailer might be present either as literal "Referral:" (unusual) or
+       as the URL-encoded form "Referral%3A" (normal, since we percent-encode
+       the whole body param). Check both. */
+    return href.indexOf('Referral:') !== -1 || href.indexOf('Referral%3A') !== -1;
+  }
+
+  function appendTrailerToMailto(href){
+    var trailer = utmTrailer();
+    if (!trailer) return href;
+    if (hasTrailer(href)) return href;
+    try {
+      var qIdx = href.indexOf('?');
+      var base = qIdx === -1 ? href : href.slice(0, qIdx);
+      var qs   = qIdx === -1 ? ''   : href.slice(qIdx + 1);
+      var sp   = new URLSearchParams(qs);
+      var body = sp.get('body') || '';
+      sp.set('body', body + trailer);
+      /* URLSearchParams renders spaces as '+', but mailto clients want %20.
+         Rebuild the query manually with encodeURIComponent. */
+      var parts = [];
+      sp.forEach(function(val, key){
+        parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(val));
+      });
+      return base + (parts.length ? '?' + parts.join('&') : '');
+    } catch (e) {
+      return href;
+    }
+  }
+
+  function rewriteAllMailtos(){
+    if (!utm) return;
+    var links = document.querySelectorAll('a[href^="mailto:"]');
+    for (var i = 0; i < links.length; i++) {
+      var current = links[i].getAttribute('href');
+      if (!current) continue;
+      var rewritten = appendTrailerToMailto(current);
+      if (rewritten !== current) links[i].setAttribute('href', rewritten);
+    }
+  }
+
+  rewriteAllMailtos();
+
+  /* Scoper rebuilds the #scopeMail href when chips change.
+     Watch that attribute so late rewrites still carry the trailer. */
+  var scopeMail = document.getElementById('scopeMail');
+  if (scopeMail && utm && 'MutationObserver' in window) {
+    var mo = new MutationObserver(function(muts){
+      for (var i = 0; i < muts.length; i++) {
+        if (muts[i].attributeName !== 'href') continue;
+        var v = scopeMail.getAttribute('href');
+        if (v && v.indexOf('mailto:') === 0 && !hasTrailer(v)) {
+          scopeMail.setAttribute('href', appendTrailerToMailto(v));
+        }
+      }
+    });
+    mo.observe(scopeMail, { attributes:true, attributeFilter:['href'] });
+  }
+
+  /* Final safety net: rewrite on click, catches anything added later. */
+  document.addEventListener('click', function(e){
+    if (!utm) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="mailto:"]') : null;
+    if (!a) return;
+    var v = a.getAttribute('href');
+    if (v && !hasTrailer(v)) a.setAttribute('href', appendTrailerToMailto(v));
+  }, true);
+
+  /* -------------------------------------------------- CLIPBOARD */
+  var live = document.getElementById('a11y-announce');
+  function announce(msg){
+    if (!live) return;
+    live.textContent = '';
+    setTimeout(function(){ live.textContent = msg; }, 30);
+  }
+
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    ta.style.top = '0';
+    document.body.appendChild(ta);
+    var sel = document.getSelection();
+    var saved = (sel && sel.rangeCount > 0) ? sel.getRangeAt(0) : null;
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    if (saved && sel) { sel.removeAllRanges(); sel.addRange(saved); }
+    return ok;
+  }
+
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(
+        function(){ return true; },
+        function(){ return fallbackCopy(text); }
+      );
+    }
+    return Promise.resolve(fallbackCopy(text));
+  }
+
+  function flash(btn, ok){
+    var label = btn.querySelector('.copy-label');
+    var original = btn.getAttribute('data-original-label');
+    if (!original && label) {
+      original = label.textContent;
+      btn.setAttribute('data-original-label', original);
+    }
+    btn.setAttribute('data-state', ok ? 'copied' : 'failed');
+    if (label) label.textContent = ok ? 'Copied' : 'Copy failed';
+    clearTimeout(btn._flashTimer);
+    btn._flashTimer = setTimeout(function(){
+      btn.removeAttribute('data-state');
+      if (label && original) label.textContent = original;
+    }, 2200);
+  }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target && e.target.closest ? e.target.closest('.copy-btn') : null;
+    if (!btn) return;
+    e.preventDefault();
+    var text = btn.getAttribute('data-copy-text');
+    if (!text) {
+      var sel = btn.getAttribute('data-copy-source');
+      if (sel) {
+        var src = document.querySelector(sel);
+        if (src) text = src.textContent;
+      }
+    }
+    if (!text) return;
+    text = text.replace(/\s+$/, '');
+    var label = btn.getAttribute('data-copy-label') || 'text';
+    var readable = label.charAt(0).toUpperCase() + label.slice(1);
+    Promise.resolve(copyText(text)).then(function(ok){
+      flash(btn, ok);
+      announce(ok ? (readable + ' copied to clipboard.') : (readable + ' could not be copied. Please copy manually.'));
+    });
+  });
+
+  /* -------------------------------------------------- BACK-TO-TOP */
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    var visible = false;
+    function updateToTop(){
+      var threshold = window.innerHeight * 1.5;
+      var shouldShow = window.scrollY > threshold;
+      if (shouldShow === visible) return;
+      visible = shouldShow;
+      toTop.classList.toggle('visible', visible);
+      if (visible) {
+        toTop.removeAttribute('aria-hidden');
+        toTop.removeAttribute('tabindex');
+      } else {
+        toTop.setAttribute('aria-hidden', 'true');
+        toTop.setAttribute('tabindex', '-1');
+      }
+    }
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior: reduce ? 'auto' : 'smooth' });
+      /* Return keyboard focus to the top of the document */
+      var main = document.getElementById('main');
+      if (main) {
+        main.setAttribute('tabindex', '-1');
+        main.focus({ preventScroll:true });
+      }
+    });
+    window.addEventListener('scroll', updateToTop, { passive:true });
+    window.addEventListener('resize', updateToTop, { passive:true });
+    updateToTop();
   }
 })();
 </script>
