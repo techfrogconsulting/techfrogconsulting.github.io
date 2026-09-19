@@ -254,7 +254,10 @@ section + section{ border-top:1px solid var(--line); }
   font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
   color:var(--muted); transition:color .25s;
 }
-.nav-links a:hover, .nav-links a:focus-visible, .nav-links a.active{ color:var(--paper); }
+.nav-links a:focus-visible, .nav-links a.active{ color:var(--paper); }
+@media (hover: hover) and (pointer: fine){
+  .nav-links a:hover{ color:var(--paper); }
+}
 .nav-cta{ font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
   border:1px solid var(--line-2); border-radius:7px; padding:.6em 1em; color:var(--paper);
   transition:border-color .25s, box-shadow .25s; white-space:nowrap; }
@@ -1336,27 +1339,85 @@ ready.<span class="caret" aria-hidden="true"></span></pre>
     revealEls.forEach(function(el){ el.classList.add('in'); });
   }
 
-  /* ---------- nav: active section ---------- */
-  var linkMap = {};
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a){
-    linkMap[a.getAttribute('href').slice(1)] = a;
-  });
-  if ('IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        var link = linkMap[en.target.id];
-        if (!link) return;
-        if (en.isIntersecting) {
-          Object.keys(linkMap).forEach(function(k){ linkMap[k].classList.remove('active'); });
-          link.classList.add('active');
+  /* ---------- nav: active-section spy ----------
+     rAF-throttled scroll-position computation. Handles:
+     - The sticky-header offset (nav is ~64px + a small gap).
+     - The short-last-section case: when the viewport bottom reaches the
+       end of the document, the last nav-linked section always wins,
+       even if it never scrolls into a top-anchored band.
+     - Cleanup when scrolled above the first nav section.
+     Updates on scroll, resize, hashchange, load, and nav-link click. */
+  (function(){
+    var HEADER_OFFSET = 96;
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if (!links.length) return;
+
+    var entries = [];
+    for (var i = 0; i < links.length; i++){
+      var id = links[i].getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (el) entries.push({ id: id, link: links[i], el: el });
+    }
+    if (!entries.length) return;
+
+    function setActive(id){
+      for (var i = 0; i < entries.length; i++){
+        var isActive = entries[i].id === id;
+        entries[i].link.classList.toggle('active', isActive);
+        if (isActive) entries[i].link.setAttribute('aria-current', 'location');
+        else entries[i].link.removeAttribute('aria-current');
+      }
+    }
+
+    function computeActive(){
+      var doc = document.documentElement;
+      var viewportH = window.innerHeight || doc.clientHeight;
+      var scrollY = window.scrollY || doc.scrollTop || 0;
+      var scrollH = Math.max(doc.scrollHeight, document.body.scrollHeight);
+
+      /* Bottom-of-document override: last nav-linked section wins. */
+      if (scrollY + viewportH >= scrollH - 4){
+        return entries[entries.length - 1].id;
+      }
+      /* Otherwise: last section whose top has passed the header line. */
+      var line = scrollY + HEADER_OFFSET + 1;
+      var currentId = null;
+      for (var i = 0; i < entries.length; i++){
+        var top = entries[i].el.getBoundingClientRect().top + scrollY;
+        if (top <= line) currentId = entries[i].id;
+        else break;
+      }
+      return currentId;
+    }
+
+    var raf = null, lastId = null;
+    function schedule(){
+      if (raf) return;
+      raf = requestAnimationFrame(function(){
+        raf = null;
+        var id = computeActive();
+        if (id !== lastId){
+          lastId = id;
+          setActive(id);
         }
       });
-    }, { rootMargin: '-38% 0px -55% 0px' });
-    Object.keys(linkMap).forEach(function(id){
-      var sec = document.getElementById(id);
-      if (sec) spy.observe(sec);
+    }
+
+    /* Schedule a recompute on nav-link click. The highlight follows the
+       section that's actually in view, not the tapped link. Do NOT call
+       blur() — keyboard focus must remain on the tapped link. */
+    document.addEventListener('click', function(e){
+      var t = e.target;
+      if (!t || !t.closest) return;
+      if (t.closest('.nav-links a[href^="#"]')) schedule();
     });
-  }
+
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('hashchange', schedule);
+    window.addEventListener('load', schedule);
+    schedule();
+  })();
 
   /* ---------- hero terminal: interactive session ---------- */
   (function(){
